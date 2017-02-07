@@ -20,6 +20,7 @@ public class Recursion{
     }
 
     public static void main (String[]arg){
+	System.out.println(name() + " was here!");
 	System.out.println(sqrt(100)+" should be 10");
 	System.out.println(sqrt(81)+" should be 9");
 	System.out.println(sqrt(64)+" should be 8");
