@@ -107,37 +107,45 @@ public class QueenBoard{
 	
 	
           	
-    private boolean solveH(int col){
-	if (col >= board.length){
-	    return issolved();}
+     private boolean solveH(int col){
+     	if (col >= board.length){
+     	    return issolved();}
 	
-	if (addQueen(col,0)){
-	    addQueen(col,0);
+     	if (addQueen(col,0)){
+     	    addQueen(col,0);
 	    return solveH(col+1);}
-	if (solveH(col+1)){return true;}
-	return solveH(col+1);
-    }
 
+	
+
+	return solveH(col+1);
+     }
+    
+
+
+    
     public String toString(){
 	String fin = "";
-	 if (solve()){
 	for (int i = 0; i < board.length ; i++) {
 	    for (int j=0; j < board.length; j++) {
 		if (board[i][j] == -1) {
-		    fin += "Q" + "  ";
+		    fin += "Q" + " ";
 		}
-		else {fin += "_" + "  ";}
+		else {fin += "_" + " ";}
 	    }
 	    fin += "\n";}
-	return fin ;
+	
+	if (solve()){
+	    return fin +  "SOLVED!";
 	}
-	 return "no sol";
+	 return fin + "no sol";
     }
 
     public static void main (String[]args){
 	QueenBoard q = new QueenBoard(5);
 	q.solve();
 	System.out.println(q.toString());
+	
+	
     }
 }
 
