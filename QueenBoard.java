@@ -71,18 +71,24 @@ public class QueenBoard{
          
     private boolean removeQueen(int c){
 	for (int r = 0; r < board.length; r++){
-	    board[r][c]--;
+	    
 	    if (board[r][c]== -1){
+		
+		for (int y=0; y<board.length;y++){
+		    board[y][c]--;
+		}
+		
 		for(int x=0; x<board.length;x++){
 		    board[r][x]--; 
 		}
+		
 		int p = 0;//y
 		int q = board.length-1;//x
 		if (r+c-board.length >= 0){
 		    p = (r+c) - board.length+1;}
 		else {q = r+c;}
 		while ((p <= board.length-1) && (q>= 0)){
-		    board[p][q]++;
+		    board[p][q]--;
 		    p++;
 		    q--;
 		}
@@ -93,7 +99,7 @@ public class QueenBoard{
 		    s = board.length + r - c - 1;}
 		else {t = board.length - r + c - 1 ;}
 		while ((s >= 0) && (t >= 0)){
-		    board[s][t]++;
+		    board[s][t]--;
 		    s--;
 		    t--;
 		}
@@ -108,26 +114,30 @@ public class QueenBoard{
 	
           	
     private boolean solveH(int col){
-     	if (col >= board.length){
-     	    return true;}//
-	
+	if (col == board.length){
+     	    return true;}
+     
 	for (int r=0; r < board.length; r++){
 	    if (board[r][col]== 0){
 		addQueen(col,r);
 		if (solveH(col+1)){
+		    System.out.println(solveH(col+1));
 		    return solveH(col+1);}
-		else{removeQueen(col);
-return solveH(col+1);
-		    }
+		else{
+		    System.out.println(solveH(col+1));
+		    removeQueen(col);
+		    addQueen(col,r+1);
+		    return solveH(col+1);
+		}
 	    }
+	   
+	   
 	}
-	  return solveH(col+1);
+    
+	return true;
     }
 
 	
-
-
-   
 
 
     
