@@ -112,30 +112,37 @@ public class QueenBoard{
     }	
 	
 	
-          	
-    private boolean solveH(int col){
-	if (col == board.length){
+     private boolean solveH(int col){
+	if (col >= board.length){
      	    return true;}
-     
+
+
 	for (int r=0; r < board.length; r++){
+	    
 	    if (board[r][col]== 0){
 		addQueen(col,r);
+		
 		if (solveH(col+1)){
-		    System.out.println(solveH(col+1));
+		    
+		    System.out.println(solveH(col+1)+"1");//check
 		    return solveH(col+1);}
 		else{
-		    System.out.println(solveH(col+1));
+		    System.out.println(solveH(col+1)+"2");//check
 		    removeQueen(col);
 		    addQueen(col,r+1);
+		   
 		    return solveH(col+1);
 		}
 	    }
+	    
+	    //where do i put a false???
 	   
 	   
 	}
-    
-	return true;
+
+	return  solveH(col+1);
     }
+	    
 
 	
 
@@ -176,11 +183,18 @@ public class QueenBoard{
 
 
     public static void main (String[]args){
-	QueenBoard q = new QueenBoard(6);
+	QueenBoard q = new QueenBoard(5);
 	q.solve();
 	System.out.println(q.toString());
 	System.out.println(q.rawString());
-	
+	QueenBoard r = new QueenBoard(7);
+	r.solve();
+	System.out.println(r.toString());
+	System.out.println(r.rawString());
+	QueenBoard s = new QueenBoard(6);
+	s.solve();
+	System.out.println(s.toString());
+	System.out.println(s.rawString());
 	
     }
 }
