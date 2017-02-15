@@ -123,24 +123,18 @@ public class QueenBoard{
 		addQueen(col,r);
 		
 		if (solveH(col+1)){
-		    
-		    System.out.println(solveH(col+1)+"1");//check
-		    return solveH(col+1);}
+		    return true;}
 		else{
-		    System.out.println(solveH(col+1)+"2");//check
 		    removeQueen(col);
-		    addQueen(col,r+1);
-		   
-		    return solveH(col+1);
+		      
+		    
 		}
 	    }
 	    
-	    //where do i put a false???
-	   
-	   
+	  
 	}
 
-	return  solveH(col+1);
+	return  false;
     }
 	    
 
@@ -187,7 +181,7 @@ public class QueenBoard{
 	q.solve();
 	System.out.println(q.toString());
 	System.out.println(q.rawString());
-	QueenBoard r = new QueenBoard(7);
+	QueenBoard r = new QueenBoard(11);
 	r.solve();
 	System.out.println(r.toString());
 	System.out.println(r.rawString());
