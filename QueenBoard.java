@@ -8,8 +8,10 @@ public class QueenBoard{
 	for (int i = 0; i < board.length; i++){
 	    for (int j = 0; j< board[0].length; j++){
 		board[i][j]=0;
+		
 	    }
 	}
+	solutionCount = 0;
     }
 
     public boolean solve()
@@ -174,8 +176,25 @@ public class QueenBoard{
 	 return fin + "no sol";
     }
 
+// public void countSolutions() - look for all solutions, and update the instance variable solutionCount to reflect the number found. 
+// public int getSolutionCount() - return the instance variable solutionCount, which should be -1 if the countSolutions was never run.
 
+    public void countSolutions(){
+	//not done...
+	  
+	}
 
+	
+    }
+
+    public int getSolutionCount(){
+	countSolutions();
+	return solutionCount;
+    }  
+	
+    
+    
+    
     public static void main (String[]args){
 	QueenBoard q = new QueenBoard(5);
 	q.solve();
