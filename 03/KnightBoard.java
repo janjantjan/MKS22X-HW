@@ -17,13 +17,13 @@ public class KnightBoard {
 
 
     public void solve() {
-	solveH(0,0,1);
+	solveH(3,3,1);
 	
     }
 
 
     private void nextMove(int row,int col){
-		
+	  	
 	if (board[row-2][col+1]== 0){
 	    nexCol=1;
 	    nexRow=-2;}
@@ -58,37 +58,52 @@ public class KnightBoard {
 	
     private boolean solveH(int row ,int col, int level) {
 	//base case:
-	if (row*col <= level){ return false;}
+	if((board.length * board.length)<=level){
+	    System.out.println("UGHHHH");
+	    return true;}
 	
 	if (board[row][col]==0){
 	    board[row][col] = level;
 	    nextMove(row,col);
+	    System.out.println(nexRow);
+	    System.out.println(nexCol);
 	    if (solveH(row+nexRow,col+nexCol, level+1)){
 		return true;}
 	    else{ removeKnight(row, col);
-		solveH(row, col, level+1);}
-	}
-        return false;}
-
-	
-
-   
+	    }
+	}        return false;}
    
     public String toString(){
 	String fin = "";
 	for (int i = 0; i < board.length ; i++) {
 	    for (int j=0; j < board[i].length; j++) {
-		fin += "" + board [i][j] + "  ";
+		if (board[i][j]> 99){	    
+		    fin += "" + board[i][j]+ " ";}
+		if (board[i][j]>9){
+		    fin += " " + board[i][j] + " ";}
+		else{ fin += "  " + board[i][j] + " ";}
 	    }
-	    fin += "\n";
-	        
-		    	
-	}
-	
+	    fin += "\n" + "\n"; 	    	
+	}	
 	return fin;
     }
 
-
+    
+    public static void main (String[]args){
+	KnightBoard k = new KnightBoard(5,5);
+	k.solve();
+	System.out.println(k.toString());
+	
+	KnightBoard l = new KnightBoard(7,7);
+	l.solve();
+	System.out.println(l.toString());
+	
+	KnightBoard m = new KnightBoard(9,9);
+	m.solve();
+	System.out.println(m.toString());
+	
+	
+    }
 }
 
 
