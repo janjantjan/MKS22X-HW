@@ -1,12 +1,28 @@
 public class KnightBoard {
     private int[][] board;
-    boolean solved;
-    int nexRow;
-    int nexCol;
-        
+   
+    private int[] nexRow;
+    private int[] nexCol;
 
     public KnightBoard(int startingRows,int startingCols) {
-	solved = false;
+	nexRow = new int[8];
+	nexRow[0] = 2;
+	nexRow[1] = 2;
+	nexRow[2] = 1;
+	nexRow[3] = 1;
+	nexRow[4] = -2;
+	nexRow[5] = -2;
+	nexRow[6] = -1;
+	nexRow[7] = -1;
+	nexCol = new int[8];
+	nexCol[0] = 1;
+	nexCol[1] = -1;
+	nexCol[2] = 2;
+	nexCol[3] = -2;
+	nexCol[4] = 1;
+	nexCol[5] = -1;
+	nexCol[6] = 2;
+	nexCol[7] = -2;
 	board = new int[startingRows][startingCols];
 	for (int i = 0; i < board.length; i++){
 	    for (int j = 0; j< board[0].length; j++){
@@ -17,39 +33,11 @@ public class KnightBoard {
 
 
     public void solve() {
-	solveH(3,3,1);
+	solveH(0,0,1);
 	
     }
 
 
-    private void nextMove(int row,int col){
-	  	
-	if (board[row-2][col+1]== 0){
-	    nexCol=1;
-	    nexRow=-2;}
-	else if (board[row+2][col+1]== 0){
-	    nexCol=1;
-	    nexRow=2;}
-	else if(board[row-2][col-1]== 0){
-	    nexCol=-1;
-	    nexRow=-2;}
-	else if(board[row+2][col-1]== 0){
-	    nexCol=-1;
-	    nexRow=2;}
-	else if(board[row-1][col+2]== 0){
-	    nexCol=2;
-	    nexRow=-1;}
-	else if(board[row+1][col+2]== 0){
-	    nexCol=2;
-	    nexRow=1;}
-	else if(board[row-1][col-2]== 0){
-	    nexCol=-2;
-	    nexRow=-1;}
-	else if(board[row+1][col-2]== 0){
-	    nexCol=-2;
-	    nexRow=1;}
-
-    }
 
     private void removeKnight (int row, int col){
 	board[row][col]= 0;
@@ -59,19 +47,20 @@ public class KnightBoard {
     private boolean solveH(int row ,int col, int level) {
 	//base case:
 	if((board.length * board.length)<=level){
-	    System.out.println("UGHHHH");
 	    return true;}
-	
+
+
 	if (board[row][col]==0){
 	    board[row][col] = level;
-	    nextMove(row,col);
-	    System.out.println(nexRow);
-	    System.out.println(nexCol);
-	    if (solveH(row+nexRow,col+nexCol, level+1)){
-		return true;}
-	    else{ removeKnight(row, col);
+	    
+	    for (int i = 0; i < nexRow.length; i++){
+		int r = nexRow[i];
+		int c = nexCol[i];	    
+		if (solveH(row+r, col+c, level+1)){
+		    return true;}
 	    }
-	}        return false;}
+	}
+	return false;}
    
     public String toString(){
 	String fin = "";
