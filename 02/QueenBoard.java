@@ -180,16 +180,40 @@ public class QueenBoard{
 // public void countSolutions() - look for all solutions, and update the instance variable solutionCount to reflect the number found. 
 // public int getSolutionCount() - return the instance variable solutionCount, which should be -1 if the countSolutions was never run.
 
-    public void countSolutions(){
-	//not done...
-	 
+    public boolean countSolutions(int col){
+	if (col >= board.length){
+	    solutionCount++;
+	    return false;
+     	    }
+
+
+	for (int r=0; r < board.length; r++){
+	    
+	    if (board[r][col]== 0){
+		addQueen(col,r);
+		
+		if (countSolutions(col+1)){
+		    return true;}
+		else{
+		    removeQueen(col);
+		      
+		    
+		}
+	    }
+	    
+	  
+	}
+
+	return  false;
     }
+	 
+    
 
 	
 
 
     public int getSolutionCount(){
-	countSolutions();
+	countSolutions(0);
 	return solutionCount;
     }	
     
@@ -208,6 +232,10 @@ public class QueenBoard{
 	s.solve();
 	System.out.println(s.toString());
 	System.out.println(s.rawString());
+	QueenBoard t = new QueenBoard(10);
+	System.out.println(t.getSolutionCount());
+        
+	
 	
     }
 }
