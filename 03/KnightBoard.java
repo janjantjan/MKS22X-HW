@@ -11,6 +11,8 @@ public class KnightBoard {
 	for (int i = 0; i < board.length; i++){
 	    for (int j = 0; j< board[0].length; j++){
 		board[i][j]=0;
+	    }
+	}
     }
 
 
@@ -20,19 +22,38 @@ public class KnightBoard {
     }
 
 
-    private boolean nextMove(int row,int col,int level,int choice){
+    private void nextMove(int row,int col){
 		
-	int[row-2][col+1]= level+1;
-	int[row+2][col+1]= level+1;
-	int[row-2][col-1]= level+1;
-	int[row+2][col-1]= level+1;
-	int[row-1][col+2]= level+1;
-	int[row+1][col+2]= level+1;
-	int[row-1][col-2]= level+1;
-	int[row+1][col-2]= level+1;
+	if (board[row-2][col+1]== 0){
+	    nexCol=1;
+	    nexRow=-2;}
+	else if (board[row+2][col+1]== 0){
+	    nexCol=1;
+	    nexRow=2;}
+	else if(board[row-2][col-1]== 0){
+	    nexCol=-1;
+	    nexRow=-2;}
+	else if(board[row+2][col-1]== 0){
+	    nexCol=-1;
+	    nexRow=2;}
+	else if(board[row-1][col+2]== 0){
+	    nexCol=2;
+	    nexRow=-1;}
+	else if(board[row+1][col+2]== 0){
+	    nexCol=2;
+	    nexRow=1;}
+	else if(board[row-1][col-2]== 0){
+	    nexCol=-2;
+	    nexRow=-1;}
+	else if(board[row+1][col-2]== 0){
+	    nexCol=-2;
+	    nexRow=1;}
 
-    }//just an idea...
-	
+    }
+
+    private void removeKnight (int row, int col){
+	board[row][col]= 0;
+    }
 	    
 	
     private boolean solveH(int row ,int col, int level) {
@@ -41,24 +62,23 @@ public class KnightBoard {
 	
 	if (board[row][col]==0){
 	    board[row][col] = level;
-	    
+	    nextMove(row,col);
 	    if (solveH(row+nexRow,col+nexCol, level+1)){
 		return true;}
-
-	    else{ removeKnight(row, col);}
+	    else{ removeKnight(row, col);
+		solveH(row, col, level+1);}
 	}
         return false;}
-	  
 
 	
 
    
    
     public String toString(){
-		String fin = "";
-	for (int i = 0; i < data.length ; i++) {
-	    for (int j=0; j < data[i].length; j++) {
-		fin += "" + data [i][j] + "  ";
+	String fin = "";
+	for (int i = 0; i < board.length ; i++) {
+	    for (int j=0; j < board[i].length; j++) {
+		fin += "" + board [i][j] + "  ";
 	    }
 	    fin += "\n";
 	        
@@ -69,7 +89,7 @@ public class KnightBoard {
     }
 
 
-
+}
 
 
 	//blank if you never called solve or when there is no solution
