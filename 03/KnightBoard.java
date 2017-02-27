@@ -29,53 +29,64 @@ public class KnightBoard {
 	
     private boolean solveH(int row , int col , int level){
          
-	if((board.length * board.length)<=level){
+	if((board.length * board[0].length)<=level){
 	    return true;}
+
+	if (row<0 || row >= board.length){return false;}
+	    if (col<0 || col>= board.length) {return false;}
        
 	if (board[row][col]==0){
-	    
+
 	    board[row][col] = level;
+	    
 	    
 	    if(row > 1 && col > 0){
                 if(solveH(row-2,col-1,level+1)){
-		    return true;}        
+		    return true;}		        
 	    }
        
-	    else if(row > 1 && col < board.length -1){
+	     if(row > 1 && col < board.length -1){
                	if(solveH(row-2,col+1,level+1)){
+
 		    return true;}
 	    }
        
-	    else if(row <  board.length -2 && col <  board.length -1){
+	     if(row <  board.length -2 && col <  board.length -1){
                	if(solveH(row+2,col+1,level+1)){
 		    return true;}
 	    }
         
-	    else if(row <  board.length -2 && col > 0){
-                 if(solveH(row+2,col-1,level+1)){
+	     if(row <  board.length -2 && col > 0){
+		if(solveH(row+2,col-1,level+1)){
+
 		    return true;}
 	    }
         
-	    else if(row > 1 && col > 0){
-                 if(solveH(row-1,col-2, level+1))
-		    {return true;}
+	     if(row > 1 && col > 0){
+		if(solveH(row-1,col-2, level+1))
+		    {
+			return true;}
 	    }
         
-	    else if(row > 1 && col <  board.length -1){
+	     if(row > 1 && col <  board.length -1){
                	if(solveH(row+1,col-2,level+1)){
 		    return true;}
 	    }
         
-	    else if(row <  board.length -2 && col > 0){
+	     if(row <  board.length -2 && col > 0){
                 if(solveH(row-1,col+2,level+1)){
 		    return true;}
 	    }
         
-	    else if(row <  board.length -2 && col <  board.length -1){
+	     if(row <  board.length -2 && col <  board.length -1){
                 if(solveH(row+1,col+2,level+1)){
 		    return true;}
+	    
 	    }
-	}return false;
+	}
+    
+	System.out.println("no match");
+	return false;
     }
 
 
@@ -100,15 +111,7 @@ public class KnightBoard {
 	KnightBoard k = new KnightBoard(5,5);
 	k.solve();
 	System.out.println(k.toString());
-	
-	KnightBoard l = new KnightBoard(7,7);
-	l.solve();
-	System.out.println(l.toString());
-	
-	KnightBoard m = new KnightBoard(9,9);
-	m.solve();
-	System.out.println(m.toString());
-	
+
 	
     }
 }
