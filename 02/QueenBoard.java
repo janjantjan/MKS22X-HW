@@ -2,8 +2,10 @@ public class QueenBoard{
 
     private int[][]board;
     private int solutionCount;
+    private boolean no;
 
     public QueenBoard(int size){
+	no = true;
 		solutionCount = 0;
 	board = new int[size][size];
 	for (int i = 0; i < board.length; i++){
@@ -180,7 +182,17 @@ public class QueenBoard{
 // public void countSolutions() - look for all solutions, and update the instance variable solutionCount to reflect the number found. 
 // public int getSolutionCount() - return the instance variable solutionCount, which should be -1 if the countSolutions was never run.
 
-    public boolean countSolutions(int col){
+ public boolean countSolutions(){
+     for (int i=0; i < board.length; i++){
+	 for (int j=0; j < board.length; j++){
+	     if (board[i][j]!=0){no = false;}
+	 }
+     }
+
+     return countSolutionsH(0);}
+
+
+    public boolean countSolutionsH(int col){
 	if (col >= board.length){
 	    solutionCount++;
 	    return false;
@@ -192,7 +204,7 @@ public class QueenBoard{
 	    if (board[r][col]== 0){
 		addQueen(col,r);
 		
-		if (countSolutions(col+1)){
+		if (countSolutionsH(col+1)){
 		    return true;}
 		else{
 		    removeQueen(col);
@@ -213,7 +225,7 @@ public class QueenBoard{
 
 
     public int getSolutionCount(){
-	countSolutions(0);
+	if( board.length != 2 && solutionCount == 0){ return -1;}
 	return solutionCount;
     }	
     
@@ -232,8 +244,10 @@ public class QueenBoard{
 	s.solve();
 	System.out.println(s.toString());
 	System.out.println(s.rawString());
-	QueenBoard t = new QueenBoard(10);
+	QueenBoard t = new QueenBoard(5);
 	System.out.println(t.getSolutionCount());
+	QueenBoard u = new QueenBoard(5);
+	System.out.println(u.getSolutionCount());
         
 	
 	
