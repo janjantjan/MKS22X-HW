@@ -15,15 +15,13 @@ public class KnightBoard {
 
 
     public void solve() {
-	solveH(0,0,1);
+	solveH(1,0,1);
 	
     }
 
 
 
-    private void removeKnight (int row, int col){
-	board[row][col]= 0;
-    }
+   
 	    
 	
     private boolean solveH(int row , int col , int level){
@@ -41,47 +39,51 @@ public class KnightBoard {
 	    
 	    if(row > 1 && col > 0){
                 if(solveH(row-2,col-1,level+1)){
-		    return true;}		        
+		    return true;}
+		
 	    }
        
 	     if(row > 1 && col < board.length ){
                	if(solveH(row-2,col+1,level+1)){
 
 		    return true;}
-	    }
+	     }
        
 	     if(row <  board.length -2 && col <  board.length){
                	if(solveH(row+2,col+1,level+1)){
 		    return true;}
-	    }
+	     }
         
 	     if(row <  board.length -2 && col > 0){
 		if(solveH(row+2,col-1,level+1)){
 
 		    return true;}
-	    }
+	     }
         
 	     if(row > 1 && col > 0){
 		if(solveH(row-1,col-2, level+1))
 		    {
 			return true;}
-	    }
+	     }
         
 	     if(row > 1 && col <  board.length -1){
                	if(solveH(row+1,col-2,level+1)){
 		    return true;}
-	    }
+	     }
         
 	     if(row <  board.length -2 && col > 0){
                 if(solveH(row-1,col+2,level+1)){
 		    return true;}
-	    }
+	     }
         
 	     if(row <  board.length -2 && col <  board.length -1){
                 if(solveH(row+1,col+2,level+1)){
 		    return true;}
+
+	
+		    
 	    
-	    }
+	     }
 	}
     
 	return false;
@@ -113,10 +115,10 @@ public class KnightBoard {
 	l.solve();
 	System.out.println(l.toString());
 
-	KnightBoard n = new KnightBoard(9,9);
+	KnightBoard n = new KnightBoard(7,7);
 	n.solve();
 	System.out.println(n.toString());
-	KnightBoard o = new KnightBoard(14,14);
+	KnightBoard o = new KnightBoard(11,11);
 	o.solve();
 	System.out.println(o.toString());
 
