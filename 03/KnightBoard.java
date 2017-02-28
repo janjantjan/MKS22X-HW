@@ -106,23 +106,8 @@ public class KnightBoard {
     }
 
     
-    public static void main (String[]args){
-	KnightBoard k = new KnightBoard(5,6);
-	k.solve();
-	System.out.println(k.toString());
-
-	
-	 KnightBoard o = new KnightBoard(6,6);
-	 o.solve();
-        System.out.println(o.toString());
-
-	
-
-	
-    }
+  
 }
 
 
-	//blank if you never called solve or when there is no solution
 
-	
