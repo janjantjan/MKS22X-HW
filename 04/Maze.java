@@ -29,6 +29,7 @@ public class Maze{
 	try{ 
 	    Scanner s = new Scanner(new File(filename));
 	    while (s.hasNextLine()){
+		s.nextLine();
 		rownum++;
 		while(s.hasNext()){
 		    colnum++;
@@ -42,6 +43,7 @@ public class Maze{
 	}
 
 	System.out.println(rownum);
+	System.out.println(temp);
 	System.out.println(colnum);
 	maze = new char[rownum][colnum];
 
