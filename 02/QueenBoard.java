@@ -225,7 +225,7 @@ public class QueenBoard{
 
 
     public int getSolutionCount(){
-	if( board.length != 2 && solutionCount == 0){ return -1;}
+	if(  board.length !=2  && solutionCount == 0){ return -1;}
 	return solutionCount;
     }	
     
