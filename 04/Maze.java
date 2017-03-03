@@ -5,9 +5,7 @@ public class Maze{
 
     private char[][]maze;
     private boolean animate;
-    private int rownum;
-    private int colnum;
-    
+
 
     /*Constructor loads a maze text file, and sets animate to false by default.
       1. The file contains a rectangular ascii maze, made with the following 4 characters:
@@ -23,40 +21,50 @@ public class Maze{
     */
 
     public Maze(String filename){
-	rownum = 1;
-	colnum = 1;
+	int rownum = 0;
+	int colnum = 0;
+	
 	String temp = "";
 	try{ 
-	    Scanner s = new Scanner(new File(filename));
-	    while (s.hasNextLine()){
-		s.nextLine();
+	    Scanner t = new Scanner(new File(filename));
+	    while(t.hasNextLine()){
+		String line = t.nextLine();
+		temp += line;
 		rownum++;
-		while(s.hasNext()){
-		    colnum++;
-		    temp += s.next();
-		}}
-
+		colnum = line.length();
+	    }
+	    System.out.println(rownum + "," + colnum + "\n" + temp);
 
      	}catch(FileNotFoundException e){
     	    System.out.println("File not found");
     	    System.exit(1);
 	}
 
-	System.out.println(rownum);
-	System.out.println(temp);
-	System.out.println(colnum);
+        if (checkSE(temp)==false) {return;}
 	maze = new char[rownum][colnum];
+	System.out.println(maze.length + "___" + maze[0].length);
 
-	for (; temp.length() > 0; temp.substring(1, temp.length()-1)){
+	while (temp.length() > 0){
 	    for (int i = 0; i < maze.length; i++){
 		for (int j = 0; j < maze[0].length; j++){
 		    maze[i][j]= temp.charAt(0);
+		    temp = temp.substring(1);
 		}
 	    }
 	}
+	System.out.println(maze[1][1]);
 	animate=false;
     }
 
+    private boolean checkSE (String maze){
+	boolean s = false;
+	boolean e = false;
+	for (int i = 0; i < maze.length(); i++){
+	    if (maze.charAt(i)=='S'){ s=true;}
+	    if (maze.charAt(i)=='E'){ e=true;}
+	}
+	return (s && e );
+    }
 
 
     private void wait(int millis){ //ADDED SORRY!
@@ -128,13 +136,12 @@ public class Maze{
     public String rawString(){
 	String fin = "";
 	for (int i = 0; i < maze.length ; i++) {
-	    for (int j=0; j < maze.length; j++) {
-		fin += maze[i][j] + " ";
+	    for (int j=0; j < maze[0].length; j++) {
+		fin += maze[i][j] ;
 	    }
 	
 	    fin += "\n";}
 	return fin;
-
     }
 
 
