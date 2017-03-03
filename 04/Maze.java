@@ -40,7 +40,10 @@ public class Maze{
     	    System.exit(1);
 	}
 
-        if (checkSE(temp)==false) {return;}
+        if (checkSE(temp)==false) {
+	    System.out.println ("Please indicate Start and End");
+	    return;}
+
 	maze = new char[rownum][colnum];
 	System.out.println(maze.length + "___" + maze[0].length);
 
