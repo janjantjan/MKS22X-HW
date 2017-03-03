@@ -29,15 +29,17 @@ public class Maze{
         if (checkSE(temp)==false) {
 	    System.out.println ("Please indicate Start and End");
 	    return;}
+	{
 
-	maze = new char[rownum][colnum];
-	System.out.println(maze.length + "___" + maze[0].length);
+	    maze = new char[rownum][colnum];
+	    System.out.println(maze.length + "___" + maze[0].length);
 
-	while (temp.length() > 0){
-	    for (int i = 0; i < maze.length; i++){
-		for (int j = 0; j < maze[0].length; j++){
-		    maze[i][j]= temp.charAt(0);
-		    temp = temp.substring(1);
+	    while (temp.length() > 0){
+		for (int i = 0; i < maze.length; i++){
+		    for (int j = 0; j < maze[0].length; j++){
+			maze[i][j]= temp.charAt(0);
+			temp = temp.substring(1);
+		    }
 		}
 	    }
 	}
