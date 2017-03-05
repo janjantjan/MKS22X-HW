@@ -58,6 +58,9 @@ public class Maze{
     }
 
 
+
+    
+
     private void wait(int millis){ //ADDED SORRY!
          try {
              Thread.sleep(millis);
@@ -85,8 +88,17 @@ public class Maze{
  
     public boolean solve(){
             int startr=-1,startc=-1;
+	    for (int i =0; i < maze.length;i++){
+		for(int j =0; j<maze[0].length; j++){
+		    if (maze[i][j]=='S'){
+			startr=i;
+			startc=j;
+		    }
+		}
+	    }
+	    System.out.println(startr +"," + startc);
             maze[startr][startc] = ' ';
-            return solve(startr,startc);
+            return solveH(startr,startc);
     }
 
     /*
@@ -105,14 +117,40 @@ public class Maze{
         All visited spots that were not part of the solution are changed to '.'
         All visited spots that are part of the solution are changed to '@'
     */
-    private boolean solve(int row, int col){
+    private boolean solveH(int row, int col){
         if(animate){
+	    
             System.out.println("\033[2J\033[1;1H"+this);
-
             wait(20);
         }
 
-        //COMPLETE SOLVE
+
+	
+	if (maze[row][col]=='E'){
+	    return true;}
+
+	
+	if (maze[row][col]==' '|| maze[row][col]=='S'){
+	    
+	    maze[row][col] = '@';
+
+	    if (row < maze.length-1){
+		if (maze[row+1][col]!='#'){
+		    if (solveH(row+1,col)){
+			
+			return true;}}}
+	    if (col < maze[0].length-1){
+		if (maze[row][col+1]!='#'){
+		    if (solveH(row,col+1)){return true;}}}
+	    if (row >= 1){
+		if (maze[row-1][col]!='#'){
+		    if (solveH(row-1,col)){return true;}}}
+	    if (col >= 1){
+		if(maze[row][col-1]!='#'){
+		    if (solveH(row,col-1)){return true;}}}
+	    
+	    maze[row][col] = '.';
+     	}
 
         return false; //so it compiles
     }
@@ -131,6 +169,7 @@ public class Maze{
 
     public static void main (String[]args){
 	Maze m = new Maze("data3.dat");
+	m.solve();
 	System.out.println(m.rawString());
     }
 }
