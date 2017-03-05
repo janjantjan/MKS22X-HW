@@ -142,12 +142,14 @@ public class Maze{
 	String fin = "";
 	for (int i = 0; i < maze.length ; i++) {
 	    for (int j=0; j < maze[0].length; j++) {
-		fin += maze[i][j] ;
+		if (maze[i][j]=='#'){ fin += "█";}
+		else{
+		    fin += maze[i][j] ;}
 	    }
 	
 	    fin += "\n";}
 	return fin;
     }
 
-
+    }
 }
