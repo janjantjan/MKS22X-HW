@@ -108,8 +108,6 @@ public class Maze{
 	    System.out.println(rawString());
             wait(30);
         }
-
-
 	
 	if (maze[row][col]=='E'){
 	    return true;}
@@ -152,9 +150,4 @@ public class Maze{
     }
 
 
-    public static void main (String[]args){
-	Maze m = new Maze("data3.dat");
-	m.solve();
-	
-    }
 }
