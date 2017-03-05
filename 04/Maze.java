@@ -44,7 +44,7 @@ public class Maze{
 	    }
 	}
 
-	animate=false;
+	animate=true;
     }
 
     private boolean checkSE (String maze){
@@ -101,27 +101,12 @@ public class Maze{
             return solveH(startr,startc);
     }
 
-    /*
-      Recursive Solve function:
-
-      A solved maze has a path marked with '@' from S to E.
-
-      Returns true when the maze is solved,
-      Returns false when the maze has no solution.
-
-
-      Postcondition:
-
-        The S is replaced with '@' but the 'E' is not.
-
-        All visited spots that were not part of the solution are changed to '.'
-        All visited spots that are part of the solution are changed to '@'
-    */
+   
     private boolean solveH(int row, int col){
         if(animate){
-	    
-            System.out.println("\033[2J\033[1;1H"+this);
-            wait(20);
+	    clearTerminal();
+	    System.out.println(rawString());
+            wait(30);
         }
 
 
@@ -170,6 +155,6 @@ public class Maze{
     public static void main (String[]args){
 	Maze m = new Maze("data3.dat");
 	m.solve();
-	System.out.println(m.rawString());
+	
     }
 }
