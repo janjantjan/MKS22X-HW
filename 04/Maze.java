@@ -19,7 +19,7 @@ public class Maze{
 		rownum++;
 		colnum = line.length();
 	    }
-	    System.out.println(rownum + "," + colnum + "\n" + temp);
+	   
 
      	}catch(FileNotFoundException e){
     	    System.out.println("File not found");
@@ -32,7 +32,7 @@ public class Maze{
 	{
 
 	    maze = new char[rownum][colnum];
-	    System.out.println(maze.length + "___" + maze[0].length);
+	    
 
 	    while (temp.length() > 0){
 		for (int i = 0; i < maze.length; i++){
@@ -43,7 +43,7 @@ public class Maze{
 		}
 	    }
 	}
-	System.out.println(maze[1][1]);
+
 	animate=false;
     }
 
@@ -96,7 +96,7 @@ public class Maze{
 		    }
 		}
 	    }
-	    System.out.println(startr +"," + startc);
+	    
             maze[startr][startc] = ' ';
             return solveH(startr,startc);
     }
