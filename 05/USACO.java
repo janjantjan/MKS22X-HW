@@ -7,6 +7,12 @@ public class USACO{
     private int elevation;
     private int[][] directions;
 
+    private int[][] pasture;
+    private int seconds;
+    private int r1;
+    private int c1;
+    private int r2;
+    private int c2;
 
     public USACO(){
 	
@@ -16,7 +22,6 @@ public class USACO{
     private  void fillDataBronze (String filename){
 	try {
 	    Scanner s = new Scanner (new File(filename));
-	    String temp = "";
 	    int row = s.nextInt();
 	    int col = s.nextInt();
 	    elevation = s.nextInt();
@@ -39,6 +44,16 @@ public class USACO{
     }
 
     private String makeString(int[][] x){
+	String fin = "";
+	for (int i = 0; i < x.length ; i++) {
+	    for (int j=0; j < x[0].length; j++) {	
+		fin += x[i][j] + " " ;
+	    }
+	    fin += "\n";}
+	return fin;
+    }
+
+      private String makeString(char[][] x){
 	String fin = "";
 	for (int i = 0; i < x.length ; i++) {
 	    for (int j=0; j < x[0].length; j++) {	
@@ -136,21 +151,65 @@ public class USACO{
 	
 	
     //SILVER PROBLEM :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    public void datafillSilver (String filename){
+	try {
+	    Scanner x = new Scanner(new File(filename));
+	    int row = x.nextInt();
+	    int col = x.nextInt();
+	    seconds = x.nextInt();
+	    System.out.println(row+ " " + col + " " + seconds);
+	    
+	    char[][] prepasture = new char[row][col];
+	   
+	    
+	    for (int i = 0; i < row; i++){
+		String line = x.next();
+		for (int j = 0; j < col; j++){
+		    prepasture[i][j]= line.charAt(j);}
+	    }
+	    int r1 = x.nextInt();
+	    int c1 = x.nextInt();
+	    int r2 = x.nextInt();
+	    int c2 = x.nextInt();
 
+	    System.out.println(makeString(prepasture));
+	    System.out.println( r1 + " " + c1 + " " + r2 + " " + c2);
+	    
+	    pasture = new int[row][col];
+	     for (int i = 0; i < pasture.length; i++){
+		 for (int j = 0; j < pasture[0].length; j++){
+		    if (prepasture[i][j]=='.'){
+			pasture[i][j] = 0;
+		    }
+		    if (prepasture[i][j] == '*'){
+			pasture[i][j]= -1;}
+		}
+	     }
+
+	     System.out.println(makeString(pasture));
+	
+			       
+		
+	}catch(FileNotFoundException e){
+    	    System.out.println("File not found");
+    	    System.exit(1);
+	}
+	    
+	    
+    }
 
     
 
     //MAIN :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     public static void main (String[]args){
+	
 	USACO u = new USACO();
-	for (int i=1; i <= 10; i++){
-	    String name = "makelake." + i + ".in";
-	    System.out.println(name);
-	    System.out.println(u.bronze(name));
-	    System.out.println( "ANSWER: " + u.readAnswer("makelake." + i + ".out"));
+	
+	    
+	u.datafillSilver("ctravel.in");
 
-	    // There is something wrong with lakes 2, 3
-	}
+	    
+	
     }
 
 }  
