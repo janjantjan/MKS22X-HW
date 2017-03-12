@@ -121,6 +121,19 @@ public class USACO{
 	drownCows();
 	return findVol();
     }
+
+    private String readAnswer (String filename){
+	try {
+	    Scanner t = new Scanner (new File(filename));
+	    return t.nextLine();
+	}catch(FileNotFoundException e){
+    	    
+    	    System.exit(1);
+	    return ("File not found");
+	}
+    }
+
+	
 	
     //SILVER PROBLEM :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -130,7 +143,14 @@ public class USACO{
     //MAIN :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     public static void main (String[]args){
 	USACO u = new USACO();
-	System.out.println(u.bronze("makelake.in"));
+	for (int i=1; i <= 10; i++){
+	    String name = "makelake." + i + ".in";
+	    System.out.println(name);
+	    System.out.println(u.bronze(name));
+	    System.out.println( "ANSWER: " + u.readAnswer("makelake." + i + ".out"));
+
+	    // There is something wrong with lakes 2, 3
+	}
     }
 
 }  
