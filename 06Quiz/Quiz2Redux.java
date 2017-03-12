@@ -38,9 +38,4 @@ public class Quiz2Redux{
 	return fin;
     }
 
-    public static void main (String[]args){
-	Quiz2Redux q = new Quiz2Redux();
-	q.combinations("PJS");
-	
-    }
 }
