@@ -40,7 +40,7 @@ public class Quiz2Redux{
 
     public static void main (String[]args){
 	Quiz2Redux q = new Quiz2Redux();
-	q.combinations("pen");
+	q.combinations("PJS");
 	
     }
 }
