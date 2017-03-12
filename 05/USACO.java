@@ -32,9 +32,7 @@ public class USACO{
 		for (int j = 0; j < 3; j++){
 		    directions[i][j]= s.nextInt();
 		}}
-	    System.out.println(row + " " + col + " " + elevation + " " + num );//check
-	    System.out.println(makeString(lake));
-	    System.out.println(makeString(directions));
+	   
 	   
 	}catch(FileNotFoundException e){
     	    System.out.println("File not found");
@@ -72,7 +70,7 @@ public class USACO{
 	
 	int highest = 0;
 	highest = isHigher(row-1, col-1, lake[row-1][col]);
-	System.out.println(highest);
+	
 	highest = isHigher(row-1, col+1, highest);
 	highest = isHigher(row, col-1, highest);
 	highest = isHigher(row, col, highest);
@@ -93,7 +91,7 @@ public class USACO{
 	replace(row+1, col, high);
 	replace(row+1, col+1, high);
 	 
-	System.out.println(makeString(lake));
+
 	  
        
     }
@@ -111,7 +109,7 @@ public class USACO{
 		else { lake[i][j] = 0;}
 	    }
 	}
-	System.out.println(makeString(lake));
+	
     }
 
     private int findVol(){
@@ -126,12 +124,13 @@ public class USACO{
 	
 	
 
-    public void  bronze (String filename){
+    public int  bronze (String filename){
    	fillDataBronze(filename);
-	for (int i = 0; i <= directions.length; i++){
+	for (int i = 0; i < directions.length; i++){
 	    getStompy(directions[i][0], directions[i][1], directions[i][2]);
 	}
 	drownCows();
+	return findVol();
     }
 	
     
@@ -146,17 +145,7 @@ public class USACO{
     //MAIN :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     public static void main (String[]args){
 	USACO u = new USACO();
-	u.fillDataBronze("makelake.in");
-	u.getStompy(1,4,4);
-	u.getStompy(1,1,10);
-	u.drownCows();
-	System.out.println(u.findVol());
-	
-	
-
-	
-			   
-
+	System.out.println(u.bronze("makelake.in"));
     }
 
 }  
