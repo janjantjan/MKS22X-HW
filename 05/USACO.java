@@ -248,21 +248,16 @@ public class USACO{
     }
 	
 
-
-
-
-
-					
-
-    
-
     //MAIN :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     public static void main (String[]args){
 	
 	USACO u = new USACO();
-	
-	    
-	System.out.println(u.silver("ctravel.in"));
+
+	for (int i = 1; i <= 10; i++){
+	    System.out.println("ctravel." + i + ".in");   
+	    System.out.println(u.silver("ctravel." + i + ".in"));
+	    System.out.println("ANSWER: " + u.readAnswer("ctravel." + i + ".out"));
+	}
 
 	    
 	
