@@ -16,9 +16,7 @@ public class Quiz2Redux{
 	return words;
     }
 
-    //permutation(perm + word.charAt(i), word.substring(0, i) + word.substring(i + 1, word.length())); }
-
-    
+   
     private static void help( ArrayList<String> words, String s, String input){
 	if (s.length() < 0){return;}
 
