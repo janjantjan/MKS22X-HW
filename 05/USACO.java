@@ -158,7 +158,7 @@ public class USACO{
 	    int row = x.nextInt();
 	    int col = x.nextInt();
 	    seconds = x.nextInt();
-	    System.out.println(row+ " " + col + " " + seconds);
+	    //System.out.println(row+ " " + col + " " + seconds);
 	    
 	    char[][] prepasture = new char[row][col];
 	   
@@ -173,8 +173,8 @@ public class USACO{
 	     r2 = x.nextInt();
 	     c2 = x.nextInt();
 
-	    System.out.println(makeString(prepasture));
-	    System.out.println( r1 + " " + c1 + " " + r2 + " " + c2);
+	     //System.out.println(makeString(prepasture));
+	     //System.out.println( r1 + " " + c1 + " " + r2 + " " + c2);
 	    
 	    pasture = new int[row][col];
 	    pasture2 = new int[row][col];
@@ -182,13 +182,15 @@ public class USACO{
 		 for (int j = 0; j < pasture[0].length; j++){
 		    if (prepasture[i][j]=='.'){
 			pasture[i][j] = 0;
+			pasture2[i][j] = 0;
 		    }
 		    if (prepasture[i][j] == '*'){
-			pasture[i][j]= -1;}
+			pasture[i][j]= -1;
+			pasture2[i][j]=-1;}
 		}
 	     }
 
-	     System.out.println(makeString(pasture));
+	     // System.out.println(makeString(pasture));
 	
 			       
 		
@@ -201,7 +203,7 @@ public class USACO{
     }
 
     private void countWays (int row, int col, int[][]p1, int[][] p2) {
-	if ((row < p1.length && row >= 0)&&(col < p1[0].length && col >= 0)){
+	if ((row < p1.length && row >= 0)&&(col < p1[0].length && col >= 0)&& (p2[row][col]!=-1)){
 		if (row > 0){
 		    if (p1[row-1][col]!=-1){p2[row][col] += p1[row-1][col];}}
 		if (col > 0){
@@ -225,23 +227,23 @@ public class USACO{
 		    if (pasture2[i][j]!=-1){countWays(i,j, pasture, pasture2);}
 		}
 	    }
-	    System.out.println(makeString(pasture));
+	    //System.out.println(makeString(pasture));
 	    for (int i = 0; i < pasture.length; i++){
 		for (int j = 0; j < pasture[0].length; j++){
 		    pasture[i][j] = pasture2[i][j];
 		}
 	    }
-	    System.out.println(makeString(pasture));
+	    //System.out.println(makeString(pasture));
 	    for (int i = 0; i < pasture2.length; i++){
 		for (int j = 0; j < pasture2[0].length; j++){
 		    if (pasture2[i][j]!=-1){
 			pasture2[i][j]= 0;}
 		}
 	    }
-	    System.out.println(makeString(pasture));
+	    //System.out.println(makeString(pasture));
 	    
 	}
-	System.out.println(makeString(pasture));
+	//System.out.println(makeString(pasture));
 	return pasture[r2-1][c2-1];
     }
 	
