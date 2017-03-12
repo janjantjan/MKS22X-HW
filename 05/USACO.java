@@ -31,9 +31,7 @@ public class USACO{
 	    for (int i =0; i< num; i++){
 		for (int j = 0; j < 3; j++){
 		    directions[i][j]= s.nextInt();
-		}}
-	   
-	   
+		}}  
 	}catch(FileNotFoundException e){
     	    System.out.println("File not found");
     	    System.exit(1);
@@ -43,11 +41,9 @@ public class USACO{
     private String makeString(int[][] x){
 	String fin = "";
 	for (int i = 0; i < x.length ; i++) {
-	    for (int j=0; j < x[0].length; j++) {
-		
+	    for (int j=0; j < x[0].length; j++) {	
 		fin += x[i][j] + " " ;
 	    }
-	
 	    fin += "\n";}
 	return fin;
     }
@@ -70,7 +66,6 @@ public class USACO{
 	
 	int highest = 0;
 	highest = isHigher(row-1, col-1, lake[row-1][col]);
-	
 	highest = isHigher(row-1, col+1, highest);
 	highest = isHigher(row, col-1, highest);
 	highest = isHigher(row, col, highest);
@@ -80,7 +75,6 @@ public class USACO{
 	highest = isHigher(row+1, col+1, highest);
 	
 	int high = highest - stomp;
-	
 	replace(row-1, col-1, high);
 	replace(row-1, col, high);
 	replace(row-1, col+1, high);
@@ -90,10 +84,7 @@ public class USACO{
 	replace(row+1, col-1, high);
 	replace(row+1, col, high);
 	replace(row+1, col+1, high);
-	 
-
-	  
-       
+    
     }
 
     private void drownCows(){
@@ -118,11 +109,9 @@ public class USACO{
 	    for (int j = 0; j < lake[0].length; j++){
 		clumpyDepth += lake[i][j];}}
 
-	return clumpyDepth * 72 * 72;
-	
+	return clumpyDepth * 72 * 72;	
     }
-	
-	
+		
 
     public int  bronze (String filename){
    	fillDataBronze(filename);
@@ -133,14 +122,10 @@ public class USACO{
 	return findVol();
     }
 	
-    
-	
-
-
-
-    
-    
     //SILVER PROBLEM :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+    
 
     //MAIN :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     public static void main (String[]args){
