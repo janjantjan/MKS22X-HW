@@ -9,23 +9,25 @@ public class Quick{
 	int last = ary.length-1;
 	ary[index] = ary[last];
 	ary[last] = num;
-	System.out.println(makeString(ary));
+	//System.out.println(makeString(ary));
 	int x = start;
-	for (int i = start; i < end;i++){
+	for (int i = 0; i < (end-start) ;i++){
+	    //System.out.println(i);
 	    if (ary[last-1] < num){
 		int less = ary[last-1];
-		ary[last-1] = ary[i];
+		ary[last-1] = ary[x];
 		ary[x] = less;
 		x++;
-System.out.println(makeString(ary));
+		//System.out.println(makeString(ary));
 	    }
-	    if (ary[last-1] >= num){
+	    else {
 		int more = ary[last-1];
 		ary[last-1] = num;
 		ary[last] = more;
 		last--;
-System.out.println(makeString(ary));
+		//System.out.println(makeString(ary));
 	    }
+	    
 	}
 	    
 
