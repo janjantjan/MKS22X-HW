@@ -48,21 +48,22 @@ public class Quick{
 	return fin;
     }
 
+    public static int quickselectH(int []data, int k, int start, int end){
+	int index = part(data, start, end);
+
+	if (data[index] < data[k]) {quickselectH(data, k, index, end);}
+	if (data[index] > data[k]) {quickselectH(data, k, start, index);}
+	
+	return data[k];
+	  
+    }
+    
+    public static int quickselect(int []data, int k){
+	return quickselectH(data, k, 0, data.length);
+
+    }
 
     public static void main (String[]args){
-	int[] n = new int [10];
-	n[0] = 99;
-	n[1] = 999;
-	n[2] = 1;
-	n[3] = 10;
-	n[4] = 8;
-	n[5] = 2;
-	n[6] = 3;
-	n[7] = 99;
-	n[8] = 99;
-	n[9] = 99;
-	System.out.println(makeString(n));
-	part(n, 2, 7);
-	System.out.println(makeString(n));
+	
     }
 }
