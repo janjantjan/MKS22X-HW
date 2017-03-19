@@ -2,42 +2,35 @@ import java.util.*;
 
 public class Quick{
 
-    public static int[] part (int[] ary, int start, int end){
-	int index = randInt(start, end);
-	int num = ary[index];
-	System.out.println("pivot: " + num);
-	int last = ary.length-1;
-	ary[index] = ary[last];
-	ary[last] = num;
-	//System.out.println(makeString(ary));
-	int x = start;
-	for (int i = 0; i < (end-start) ;i++){
-	    //System.out.println(i);
-	    if (ary[last-1] < num){
-		int less = ary[last-1];
-		ary[last-1] = ary[x];
-		ary[x] = less;
-		x++;
-		//System.out.println(makeString(ary));
-	    }
-	    else {
-		int more = ary[last-1];
-		ary[last-1] = num;
-		ary[last] = more;
-		last--;
-		//System.out.println(makeString(ary));
-	    }
-	    
-	}
-	    
-
-
-		 
-	return ary;	
-
+    public static int part (int[] ary, int start, int end){
+	int pivot = randInt(start, end-1);
+	System.out.println(makeString(ary));
+	System.out.println("pivot: " + ary[pivot]);
+	change (ary, end-1, pivot);
+	System.out.println(makeString(ary));
+	int pivpoint = end - 1;
 	
+	for (int i = start; i < pivpoint;){
+	    if (ary[pivpoint-1] < ary[pivpoint]){
+		change(ary, i, pivpoint-1);
+		i++;}
+	    else {
+		change (ary, pivpoint, pivpoint -1);
+		pivpoint--;
+	    }
+	    System.out.println(makeString(ary));
+	}
 
+	return pivpoint;
     }
+
+
+    private static void change (int[] ary, int a, int b){
+	int hold = ary[a];
+	ary[a] = ary[b];
+	ary[b] = hold;
+    }
+	
 
     public static int randInt(int min, int max) {
   
@@ -58,18 +51,18 @@ public class Quick{
 
     public static void main (String[]args){
 	int[] n = new int [10];
-	n[0] = 5;
-	n[1] = 9;
+	n[0] = 99;
+	n[1] = 999;
 	n[2] = 1;
 	n[3] = 10;
 	n[4] = 8;
 	n[5] = 2;
 	n[6] = 3;
-	n[7] = 6;
-	n[8] = 4;
-	n[9] = 7;
+	n[7] = 99;
+	n[8] = 99;
+	n[9] = 99;
 	System.out.println(makeString(n));
-	part(n, 0, 9);
+	part(n, 2, 7);
 	System.out.println(makeString(n));
     }
 }
