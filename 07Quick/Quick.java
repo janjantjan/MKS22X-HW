@@ -63,7 +63,29 @@ public class Quick{
 
     }
 
-    public static void main (String[]args){
+    public static void quicksort(int[]data){
+	quicksortH(data, 0, data.length);
+    }
+    
+    public static void quicksortH (int[]data, int start, int end){
+	System.out.println("start: " + start + " end: " + end);
+	if (start ==  end){return;}
 	
+	int divide = randInt(start, end-1);
+	if (start < divide){
+	    part(data, start, divide);
+	    quicksortH(data, start, divide);}
+	if (divide > end){
+	    part(data, divide, end);
+	    quicksortH(data, divide, end);}
+
+	
+    }
+
+    public static void main (String[]args){
+	int[] n = {0,19,17,12,3,6,8,1,11,14,15,20,4,7,2,6,10,13,16,18,9,5,21};
+	System.out.println(makeString(n));
+	quicksort(n);
+	System.out.println(makeString(n));
     }
 }
