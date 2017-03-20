@@ -66,7 +66,6 @@ public class USACO{
 
     private int isHigher (int r, int c, int highest){
 	if (r < 0 || c < 0) { return highest;}
-	if ( lake[r][c]< 0 ) { return highest;}
 	if (lake[r][c] > highest) {return lake[r][c];}
 	else { return highest;}
     }
@@ -87,7 +86,7 @@ public class USACO{
 	highest = isHigher(row, col, highest);
 	highest = isHigher(row, col+1, highest);
 	highest = isHigher(row+1, col-1, highest);
-	highest = isHigher(row+1, col-1, highest);
+	highest = isHigher(row+1, col, highest);
 	highest = isHigher(row+1, col+1, highest);
 	
 	int high = highest - stomp;
@@ -254,9 +253,9 @@ public class USACO{
 	USACO u = new USACO();
 
 	for (int i = 1; i <= 10; i++){
-	    System.out.println("ctravel." + i + ".in");   
-	    System.out.println(u.silver("ctravel." + i + ".in"));
-	    System.out.println("ANSWER: " + u.readAnswer("ctravel." + i + ".out"));
+	    System.out.println("makelake." + i + ".in");   
+	    System.out.println(u.bronze("makelake." + i + ".in"));
+	    System.out.println("ANSWER: " + u.readAnswer("makelake." + i + ".out"));
 	}
 
 	    
