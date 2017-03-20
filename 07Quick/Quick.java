@@ -69,21 +69,21 @@ public class Quick{
     
     public static void quicksortH (int[]data, int start, int end){
 	System.out.println("start: " + start + " end: " + end);
-	if (start ==  end){return;}
+	if (start >=  end){return;}
 	
-	int divide = randInt(start, end-1);
-	if (start < divide){
-	    part(data, start, divide);
-	    quicksortH(data, start, divide);}
-	if (divide > end){
-	    part(data, divide, end);
-	    quicksortH(data, divide, end);}
+	int div = randInt(start, end-1);
+	if (start < div){
+	    part(data, start, div);
+	    quicksortH(data, start, div);}
+	if (div > end){
+	    part(data, div, end);
+	    quicksortH(data, div, end);}
 
 	
     }
 
     public static void main (String[]args){
-	int[] n = {0,19,17,12,3,6,8,1,11,14,15,20,4,7,2,6,10,13,16,18,9,5,21};
+	int[] n = {19,17,12,21,3,6,8,1,11,0,14,15,20,4,7,2,6,10,13,16,18,9,5};
 	System.out.println(makeString(n));
 	quicksort(n);
 	System.out.println(makeString(n));
