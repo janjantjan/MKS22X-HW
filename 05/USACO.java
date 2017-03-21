@@ -253,9 +253,15 @@ public class USACO{
 	USACO u = new USACO();
 
 	for (int i = 1; i <= 10; i++){
-	    System.out.println("makelake." + i + ".in");   
+	    System.out.println("--------------------------makelake." + i + ".in");   
 	    System.out.println(u.bronze("makelake." + i + ".in"));
 	    System.out.println("ANSWER: " + u.readAnswer("makelake." + i + ".out"));
+	}
+
+	for (int i = 1; i <= 10; i++){
+	    System.out.println("--------------------------- ctravel." + i + ".in");   
+	    System.out.println(u.silver("ctravel." + i + ".in"));
+	    System.out.println("ANSWER: " + u.readAnswer("ctravel." + i + ".out"));
 	}
 
 	    
