@@ -12,30 +12,34 @@ public class Quiz2Redux{
 	ArrayList<String>words = new ArrayList<String>();
 	help( words , s, "");
 	Collections.sort(words);
-	System.out.println(makeString(words));
+	//System.out.println(makeString(words));
 	return words;
     }
 
    
-    private static void help( ArrayList<String> words, String s, String input){
-	if (s.length() < 0){return;}
-
-	words.add(input);
-
+    private static void help( ArrayList<String> words, String s, String out){
 	
-	for (int i = 0; i < s.length(); i++){
-	    help(words, s.substring(0,i)+s.substring(i+1, s.length()), input+s.charAt(i));}
-	
+	words.add(out);
+        for (int i = 0; i < s.length(); i++){
+	    String neu =  out + s.charAt(i);
+            help(words,  s.substring(i + 1),neu);}
+            
     }
+    
 
-	
 
+    
     private static String makeString(ArrayList words){
 	String fin = "";
 	for(int i = 0; i < words.size(); i++){
 	    fin += words.get(i) + "\n";
 	}
 	return fin;
+    }
+
+    public static void main (String[]args) {
+	
+	System.out.println(makeString(combinations("ABCDEFGHI")));
     }
 
 }
