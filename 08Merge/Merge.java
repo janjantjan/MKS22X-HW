@@ -10,23 +10,26 @@ public class Merge {
 
 // One possible way to make the merge method work well in this situation is to merge directly into the array you want to put the values into (DO NOT return a new array and then copy that over
     public static void mergesort(int[]ary){
-	int part = ary.length/2;
-	int otherpart = ary.length - part;
-	int[]left = 
+	for 
+    }
 
-
+   
 
 
     private static void mergesortH(int[]ary, int[] copy){
 	
-	//fill with alt method later
+	
 
     }
 	
 	private static int[] copy(int[]ary, int start, int end){
-
+	    int[] neu =  new int[start-end];
+	    while (int i = 0; start < end; i++){
+		neu[i] = ary[start];
+		start++;
+	    }
+	    return neu;
 	}
-	    
 
 
 
@@ -85,3 +88,9 @@ public class Merge {
     }
 
 }
+    //tests
+    //randomized (0-10) (blah to blah)
+    //Same val.
+    // Sorted
+	//reverse sorted
+    // Size like.... 1 mill
