@@ -9,7 +9,7 @@ public class Driver {
     }
 
     
-    public static boolean testRepReversed (int length) {
+    public static boolean testRep (int length) {
 	int[] rev = new int[length];
 	for (int i = 0 ; i < rev.length; i++){
 	    rev[i] = randInt(0,length);
@@ -19,13 +19,14 @@ public class Driver {
 	int[]revMerge = rev;
 
 	Merge.mergesort(revMerge);
+	
 	Arrays.sort(revAns);
-
+System.out.println (Merge.makeString(revMerge));
 	return (revAns == revMerge);
     }
 
     public static void main (String[]args){
-	System.out.println(testRepReversed(5));
+	System.out.println(testRep(100));
     }
 }
     
