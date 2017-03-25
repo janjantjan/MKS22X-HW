@@ -9,7 +9,7 @@ public class Merge {
 	return neu;
     }
 
-    private static void  mergesort ( int[]ary){
+    public  static void  mergesort ( int[]ary){
 	if (ary.length > 1){
 	    
 	    int mid = ary.length / 2;
