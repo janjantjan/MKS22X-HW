@@ -96,12 +96,7 @@ public class Driver {
 	return check(revMerge, revAns);
     }
     
-    public static void main (String[]args){
-	System.out.println(testRep(100000000)); //10^8 is slow
-	System.out.println(testReverse(100000000)); //10^8 is slow
-	System.out.println(testOrdered(100000000)); //10^8 is slow
-	System.out.println(testNoRep(10000000)); //10^8 is slow
-    }
+    
 }
     
 
