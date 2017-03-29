@@ -37,6 +37,7 @@ public class MyLinkedList {
 	String fin = "[";
 	LNode current = start;
 	for (int i = size; i > 0; i--){
+	    //System.out.println(size);
 	    fin += current.value;
 	    current = current.next;
 	}
@@ -44,34 +45,71 @@ public class MyLinkedList {
 	return fin;
     }
 
-
-
-    private class LNode{
-	private LNode next;
-	private int value;
-
-	public LNode (int val){
-	    value = val;
-	    next = null;
-	    
+    public int set(int index, int val){
+	
+	LNode current = start;
+	while (index > 0){
+	    current = current.next;
+	    index--;
 	}
+	int save = current.value;
+	current = new LNode(val, current.next);
+	//System.out.println(current.value);
+	return save;
+	
+    }
+    // int indexOf(int value) 
+    //     - returns the index of the 1st occurrence of the value in the linked list, -1 if not found.
+    // void add(int index, int value)    
+    //     - insert a new element at the specified index, 0 at the front, size() at the end. 
+    // int remove(int index) 
+    //     - remove the element at the specified index, returns the value removed
 
-	public LNode (int val, LNode nxt){
-	    value = val;
-	    next = nxt;
-	}	
+    public int indexOf(int val){
+	LNode current = start;
+	for (int i = size; i > 0; i--){
+	    //System.out.println(current.value);
+	    if (current.value == val){
+		return size - i;
+	    }
+	    current = current.next;
+	}
+				       
+	return -1;
     }
 
+    
+	private class LNode{
+	    private LNode next;
+	    private int value;
 
-    public static void main (String[]argssssss){
-	MyLinkedList X = new MyLinkedList();
-	X.add(7);
-	X.add(4);
-	X.add(1);
-	X.add(9);
-	X.add(9);
-	X.add(3);
+	    public LNode (int val){
+		value = val;
+		next = null;
+	    
+	    }
+
+	    public LNode (int val, LNode nxt){
+		value = val;
+		next = nxt;
+	    }	
+	}
+
+    
+
+
+	public static void main (String[]argssssss){
+	    MyLinkedList X = new MyLinkedList();
+	    X.add(7);
+	    X.add(4);
+	    X.add(1);
+	    X.add(9);
+	    X.add(9);
+	    X.add(3);
+	    
+	System.out.println(X.indexOf(4));
 	System.out.println(X.toString());
+	
     }
 
 
