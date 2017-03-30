@@ -62,8 +62,12 @@ public class MyLinkedList {
    
     // void add(int index, int value)    
     //     - insert a new element at the specified index, 0 at the front, size() at the end. 
-    // int remove(int index) 
-    //     - remove the element at the specified index, returns the value removed
+   
+
+    public void add (int index, int value){
+	LNode current = start;
+	
+    }
 
     public int indexOf(int val){
 	LNode current = start;
