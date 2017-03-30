@@ -37,9 +37,10 @@ public class MyLinkedList {
 	String fin = "[";
 	LNode current = start;
 	for (int i = size; i > 0; i--){
-	    //System.out.println(size);
-	    fin += current.value;
-	    current = current.next;
+	    if (i>1){
+	    fin += current.value + ", ";
+	    current = current.next;}
+	    else{ fin += current.value;}
 	}
 	fin += "]";
 	return fin;
@@ -58,8 +59,7 @@ public class MyLinkedList {
 	return save;
 	
     }
-    // int indexOf(int value) 
-    //     - returns the index of the 1st occurrence of the value in the linked list, -1 if not found.
+   
     // void add(int index, int value)    
     //     - insert a new element at the specified index, 0 at the front, size() at the end. 
     // int remove(int index) 
@@ -76,6 +76,22 @@ public class MyLinkedList {
 	}
 				       
 	return -1;
+    }
+
+    public int remove(int index){
+	LNode current = start;
+	LNode b4 = null;
+
+	for (int i = 0; i < index; i++){
+	    b4 = current;
+	    current = current.next;
+	}
+
+	int removed = current.value;
+	b4.next = current.next;
+	size--;
+	
+	return removed;
     }
 
     
@@ -98,16 +114,16 @@ public class MyLinkedList {
     
 
 
-	public static void main (String[]argssssss){
-	    MyLinkedList X = new MyLinkedList();
-	    X.add(7);
-	    X.add(4);
-	    X.add(1);
-	    X.add(9);
-	    X.add(9);
-	    X.add(3);
-	    
-	System.out.println(X.indexOf(4));
+    public static void main (String[]argssssss){
+	MyLinkedList X = new MyLinkedList();
+	X.add(7);
+	X.add(4);
+	X.add(1);
+	X.add(9);
+	X.add(9);
+	X.add(3);
+	System.out.println(X.remove(3));   
+	//System.out.println(X.indexOf(8));
 	System.out.println(X.toString());
 	
     }
