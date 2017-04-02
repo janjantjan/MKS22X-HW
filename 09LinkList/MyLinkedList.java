@@ -159,22 +159,6 @@ public class MyLinkedList {
     
 
 
-    public static void main (String[]argssssss){
-	MyLinkedList X = new MyLinkedList();
-	X.add(7);
-        X.add(4);
-	X.add(1);
-	X.add(9);
-	X.add(9);
-	X.add(3);
-	X.add(20,3);
-	X.remove(8);
-	X.set(20, 3);
-	X.get(12);
-	System.out.println(X.indexOf(8));
-	System.out.println(X.toString());
-	
-    }
 
 
 }
