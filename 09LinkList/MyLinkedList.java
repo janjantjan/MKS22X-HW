@@ -46,19 +46,7 @@ public class MyLinkedList {
 	return fin;
     }
 
-    public int set(int index, int val){
-	
-	LNode current = start;
-	while (index > 0){
-	    current = current.next;
-	    index--;
-	}
-	int save = current.value;
-	current = new LNode(val, current.next);
-	//System.out.println(current.value);
-	return save;
-	
-    }
+  
    
     // void add(int index, int value)    
     //     - insert a new element at the specified index, 0 at the front, size() at the end. 
@@ -98,6 +86,18 @@ public class MyLinkedList {
 	return removed;
     }
 
+    public int set(int index, int val){
+	LNode current = start;
+	while (index > 0){
+	    current = current.next;
+	    index--;
+	}
+	int save = current.value;
+	current.value = val;
+	//System.out.println(current.value);
+	return save;
+	
+    }
     
 	private class LNode{
 	    private LNode next;
@@ -126,7 +126,7 @@ public class MyLinkedList {
 	X.add(9);
 	X.add(9);
 	X.add(3);
-	System.out.println(X.remove(3));   
+	System.out.println(X.set(2,3));   
 	//System.out.println(X.indexOf(8));
 	System.out.println(X.toString());
 	
