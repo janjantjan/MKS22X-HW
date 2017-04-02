@@ -36,11 +36,17 @@ public class MyLinkedList {
 
     public int get (int index){
 	LNode current = start;
-	while (index > 0 ) {
-	    current = current.next;
-	    index--;
+	try{
+	    while (index > 0 ) {
+		current = current.next;
+		index--;
+	    }
+	    return current.value;
+
+	}catch(NullPointerException e){
+	    System.out.println("GET index out of bounds: " + index);
+	    return 00000;
 	}
-	return current.value;
     }
 
 
@@ -63,12 +69,18 @@ public class MyLinkedList {
     public void add (int index, int value){
 	LNode current = start;
 	
-	for (int i = 0; i < index; i++){
-	    current = current.next;
+	try{
+	    for (int i = 0; i < index; i++){
+		current = current.next;
+	    }
+	    LNode neu = new LNode(value, current.next);
+	    current.next = neu;
+	    size++;
+
+	}catch(NullPointerException e){
+	    System.out.println("ADD index out of bounds: " + index);
+	    return;
 	}
-	LNode neu = new LNode(value, current.next);
-        current.next = neu;
-	size++;
     }
 
     
@@ -90,7 +102,8 @@ public class MyLinkedList {
 	LNode current = start;
 	LNode b4 = null;
 
-	for (int i = 0; i < index; i++){
+	try{
+	    for (int i = 0; i < index; i++){
 	    b4 = current;
 	    current = current.next;
 	}
@@ -99,19 +112,31 @@ public class MyLinkedList {
 	b4.next = current.next;
 	size--;
 	
-	return removed;
+	return removed;}
+
+	catch(NullPointerException e){
+	    System.out.println("REMOVE index out of bounds: " + index);
+	    return 00000;
+	}
     }
 
     public int set(int index, int val){
 	LNode current = start;
-	while (index > 0){
-	    current = current.next;
-	    index--;
+	int i = index;
+	try{
+	    while (i > 0){
+		current = current.next;
+		i--;
+	    }
+	    int save = current.value;
+	    current.value = val;
+	    //System.out.println(current.value);
+	    return save;
+
+	}catch(NullPointerException e){
+	    System.out.println("SET index out of bounds: " + index);
+	    return 00000;
 	}
-	int save = current.value;
-	current.value = val;
-	//System.out.println(current.value);
-	return save;
 	
     }
     
@@ -142,8 +167,10 @@ public class MyLinkedList {
 	X.add(9);
 	X.add(9);
 	X.add(3);
-	X.add(2,3);
-	
+	X.add(20,3);
+	X.remove(8);
+	X.set(20, 3);
+	X.get(12);
 	System.out.println(X.indexOf(8));
 	System.out.println(X.toString());
 	
