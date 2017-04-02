@@ -8,9 +8,20 @@ public class MyLinkedList {
     }
 
     public boolean add (int value){
-        start = new LNode(value, start);
-	size++;
-	return true;
+
+	if (size==0){
+	    start = new LNode(value, start);
+	    size++;
+	    return true;}
+	else{
+	    LNode current = start;
+	    for (int i = 0; i < size-1; i++){
+		current = current.next;
+	    }
+	    LNode neu = new LNode(value, null);
+	    current.next = neu; 
+	    size++;
+	    return true;}
     }
     
     public int size (){
@@ -47,9 +58,6 @@ public class MyLinkedList {
     }
 
   
-   
-    // void add(int index, int value)    
-    //     - insert a new element at the specified index, 0 at the front, size() at the end. 
    
 
     public void add (int index, int value){
@@ -129,13 +137,14 @@ public class MyLinkedList {
     public static void main (String[]argssssss){
 	MyLinkedList X = new MyLinkedList();
 	X.add(7);
-	X.add(4);
+        X.add(4);
 	X.add(1);
 	X.add(9);
 	X.add(9);
 	X.add(3);
-        X.add(2,3);   
-	//System.out.println(X.indexOf(8));
+	X.add(2,3);
+	
+	System.out.println(X.indexOf(8));
 	System.out.println(X.toString());
 	
     }
