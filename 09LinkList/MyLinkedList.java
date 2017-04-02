@@ -55,7 +55,15 @@ public class MyLinkedList {
     public void add (int index, int value){
 	LNode current = start;
 	
+	for (int i = 0; i < index; i++){
+	    current = current.next;
+	}
+	LNode neu = new LNode(value, current.next);
+        current.next = neu;
+	size++;
     }
+
+    
 
     public int indexOf(int val){
 	LNode current = start;
@@ -126,7 +134,7 @@ public class MyLinkedList {
 	X.add(9);
 	X.add(9);
 	X.add(3);
-	System.out.println(X.set(2,3));   
+        X.add(2,3);   
 	//System.out.println(X.indexOf(8));
 	System.out.println(X.toString());
 	
