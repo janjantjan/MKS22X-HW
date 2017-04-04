@@ -1,39 +1,118 @@
 public class MyLinkedList {
     private LNode start;
     private int size;
+    private LNode end;     
 
     public MyLinkedList(){
 	start = null;
+	end = null;
 	size = 0;
     }
 
-    public boolean add (int value){
+    private void remove(LNode nod){
+	if (nod == start){
+	    LNode neu = start.next;
+	    neu.prev = null;
+	    start = neu;
+	    size--;
+	}
 
-	if (size==0){
-	    start = new LNode(value, start);
-	    size++;
-	    return true;}
-	else{
-	    LNode current = start;
-	    for (int i = 0; i < size-1; i++){
+	else if (nod == end){
+	    LNode neu = end.prev;
+	    neu.next = null;
+	    end = neu;
+	}
+	else{   
+	    nod.prev.next = nod.next;
+	    nod.next.prev = nod.prev;
+	    size--;}
+    }
+
+    private LNode getNode (int index){
+	if (index >= size || index < 0){
+	    return null;}
+	
+	int half = size/2;
+	LNode current = null;
+	if (index < half){
+	    current = start;
+	    for (int i = 0; i < index; i++){
 		current = current.next;
 	    }
-	    LNode neu = new LNode(value, null);
-	    current.next = neu; 
+	}
+	else {
+	    current = end;
+	    for (int i = size; i > index; i--){
+		current = current.prev;
+	    }
+	}
+	System.out.println(current.value);
+	return current;
+    }
+
+    private void insertAfter(LNode tba, LNode loc){
+	if (loc == end){
+	    loc.next = tba;
+	    tba.prev = loc;
+	    end = tba;
 	    size++;
-	    return true;}
+	}
+	else{
+	    tba.next = loc.next;
+	    tba.prev = loc;
+	    loc.next.prev = tba;
+	    loc.next = tba;
+	    size++;}
+    }
+
+    private void insertBefore (LNode tba, LNode loc){
+	if (loc == start){
+	    loc.prev = tba;
+	    tba.next = loc;
+	    start = tba;
+	    size++;
+	}
+	else{
+	    tba.next = loc;
+	    tba.prev = loc.prev;
+	    loc.prev.next = tba;
+	    loc.prev = tba;
+	    size++;}
+    }
+		
+    public void add (int index, int value){
+	try{
+	    LNode loc = getNode(index);
+	    LNode neu = new LNode(value);
+	    insertBefore(neu, loc);
+     	}catch(NullPointerException e){
+     	    System.out.println("ADD index out of bounds: " + index);
+     	    return;
+    	}
+    }
+    
+    public boolean add (int value){
+	try{
+	    if (size==0){
+		start = new LNode(value, start, null);
+		end = start;
+		size++;
+		return true;}
+	    else{
+		LNode neu = new LNode (value);
+		insertAfter(neu, end);
+        
+		return true;}
+	}catch (NullPointerException e){
+	    System.out.println("Null Pointer");
+	    return false;}
     }
     
     public int size (){
 	return size;
     }
 
-    private boolean hasNext(){
-	LNode current = start;
-	if(current.next == null){return false;}
-	else{return true;}
-    }
-
+  
     public int get (int index){
 	LNode current = start;
 	try{
@@ -55,8 +134,9 @@ public class MyLinkedList {
 	LNode current = start;
 	for (int i = size; i > 0; i--){
 	    if (i>1){
-	    fin += current.value + ", ";
-	    current = current.next;}
+		//System.out.println("Node index: " + i + " V: " + current.value + " prev: " + current.prev + " next: " + current.next);
+		fin += current.value + ", ";
+		current = current.next;}
 	    else{ fin += current.value;}
 	}
 	fin += "]";
@@ -66,22 +146,7 @@ public class MyLinkedList {
   
    
 
-    public void add (int index, int value){
-	LNode current = start;
-	
-	try{
-	    for (int i = 0; i < index; i++){
-		current = current.next;
-	    }
-	    LNode neu = new LNode(value, current.next);
-	    current.next = neu;
-	    size++;
 
-	}catch(NullPointerException e){
-	    System.out.println("ADD index out of bounds: " + index);
-	    return;
-	}
-    }
 
     
 
@@ -143,20 +208,36 @@ public class MyLinkedList {
 	private class LNode{
 	    private LNode next;
 	    private int value;
+	    private LNode prev;
 
 	    public LNode (int val){
 		value = val;
 		next = null;
+		prev = null;
 	    
 	    }
 
-	    public LNode (int val, LNode nxt){
+	    public LNode (int val, LNode nxt, LNode prv){
 		value = val;
 		next = nxt;
+		prev = prv;
 	    }	
 	}
 
-    
+    public static void main (String[]helloworld){
+	MyLinkedList n = new MyLinkedList();
+	n.add(0);
+	n.add(11);
+	n.add(9);
+	n.add(6);
+	n.add(1);
+	n.add(8);
+	n.add(4);
+	n.add(0);
+	System.out.println(n.toString());
+	n.add(6, 16);
+	System.out.println(n.toString());
+    }
 
 
 
