@@ -214,22 +214,7 @@ public class MyLinkedList {
 	    }	
 	}
 
-    public static void main (String[]helloworld){
-	MyLinkedList n = new MyLinkedList();
-	n.add(0);
-	n.add(11);
-	n.add(9);
-	n.add(6);
-	n.add(1);
-	n.add(8);
-	n.add(4);
-	n.add(0);
-	System.out.println(n.toString());
-	n.add(6, 16);
-	System.out.println(n.toString());
-	n.remove(2);
-	System.out.println(n.toString());
-    }
+  
 
 
 
