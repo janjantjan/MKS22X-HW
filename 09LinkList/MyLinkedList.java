@@ -10,6 +10,10 @@ public class MyLinkedList {
     }
 
     private void remove(LNode nod){
+	if (size == 1){
+	    start = null;
+	    end = null;}
+	
 	if (nod == start){
 	    LNode neu = start.next;
 	    neu.prev = null;
@@ -29,7 +33,7 @@ public class MyLinkedList {
     }
 
     private LNode getNode (int index){
-	if (index >= size || index < 0){
+		if (index >= size || index < 0){
 	    return null;}
 	
 	int half = size/2;
@@ -144,12 +148,6 @@ public class MyLinkedList {
     }
 
   
-   
-
-
-
-    
-
     public int indexOf(int val){
 	LNode current = start;
 	for (int i = size; i > 0; i--){
@@ -164,22 +162,14 @@ public class MyLinkedList {
     }
 
     public int remove(int index){
-	LNode current = start;
-	LNode b4 = null;
+	
 
 	try{
-	    for (int i = 0; i < index; i++){
-	    b4 = current;
-	    current = current.next;
-	}
+	    LNode neu = getNode(index);
+	    remove (neu);
+	    return neu.value;
 
-	int removed = current.value;
-	b4.next = current.next;
-	size--;
-	
-	return removed;}
-
-	catch(NullPointerException e){
+	}catch(NullPointerException e){
 	    System.out.println("REMOVE index out of bounds: " + index);
 	    return 00000;
 	}
@@ -236,6 +226,8 @@ public class MyLinkedList {
 	n.add(0);
 	System.out.println(n.toString());
 	n.add(6, 16);
+	System.out.println(n.toString());
+	n.remove(2);
 	System.out.println(n.toString());
     }
 
