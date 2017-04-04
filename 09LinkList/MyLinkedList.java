@@ -136,12 +136,32 @@ public class MyLinkedList {
     public String toString (){
 	String fin = "[";
 	LNode current = start;
-	for (int i = size; i > 0; i--){
-	    if (i>1){
-		//System.out.println("Node index: " + i + " V: " + current.value + " prev: " + current.prev + " next: " + current.next);
-		fin += current.value + ", ";
+	for (int i = 0; i < size; i++){
+	    if (i<1){
+		int cur = current.value;
+		LNode bef = current.prev;
+		int aft = current.next.value;
+		//System.out.println("(" + bef + ")" + cur + "(" + aft + ")" + ", ");
+		fin += "(" + bef + ")" + cur + "(" + aft + ")" + ", ";
 		current = current.next;}
-	    else{ fin += current.value;}
+	    else if (i == size-1){
+		//System.out.println("blah");
+		int cur = current.value;
+		//System.out.println(cur);
+		int bef = current.prev.value;
+		//System.out.println(bef);
+		LNode aft = current.next;
+		//System.out.println(aft);
+		//System.out.println("(" + bef + ")" + cur + "(" + aft + ")" + ", ");
+		fin += "(" + bef + ")" + cur + "(" + aft + ")" + ", ";}
+	    else{
+		int cur = current.value;
+		int bef = current.prev.value;
+		int aft = current.next.value;
+		//System.out.println("(" + bef + ")" + cur + "(" + aft + ")" + ", ");
+		fin += "(" + bef + ")" + cur + "(" + aft + ")" + ", ";
+		current = current.next;}
+	  
 	}
 	fin += "]";
 	return fin;
@@ -214,7 +234,15 @@ public class MyLinkedList {
 	    }	
 	}
 
-  
+    public static void main (String[]sfho){
+	MyLinkedList n = new MyLinkedList();
+	n.add(1);
+	n.add(2);
+	n.add(3);
+	n.add(72);
+	n.add(12);
+	System.out.println(n.toString());
+    }
 
 
 
