@@ -84,7 +84,7 @@ public class MyLinkedList {
 	    size++;}
     }
 		
-    public void add (int index, int value){
+      public void add (int index, int value){
 	try{
 	    LNode loc = getNode(index);
 	    LNode neu = new LNode(value);
@@ -110,7 +110,7 @@ public class MyLinkedList {
 	}catch (NullPointerException e){
 	    System.out.println("Null Pointer");
 	    return false;}
-    }
+}
     
     public int size (){
 	return size;
@@ -153,7 +153,7 @@ public class MyLinkedList {
 		LNode aft = current.next;
 		//System.out.println(aft);
 		//System.out.println("(" + bef + ")" + cur + "(" + aft + ")" + ", ");
-		fin += "(" + bef + ")" + cur + "(" + aft + ")" + ", ";}
+		fin += "(" + bef + ")" + cur + "(" + aft + ")";}
 	    else{
 		int cur = current.value;
 		int bef = current.prev.value;
@@ -244,6 +244,7 @@ public class MyLinkedList {
 	System.out.println(n.toString());
 	n.add(2, 700);
 	System.out.println(n.toString());
+	System.out.println(n.indexOf(700));
 
     }
 
