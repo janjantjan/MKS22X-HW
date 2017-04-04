@@ -88,7 +88,7 @@ public class MyLinkedList {
 	try{
 	    LNode loc = getNode(index);
 	    LNode neu = new LNode(value);
-	    insertBefore(neu, loc);
+	    insertAfter(neu, loc);
      	}catch(NullPointerException e){
      	    System.out.println("ADD index out of bounds: " + index);
      	    return;
@@ -242,6 +242,9 @@ public class MyLinkedList {
 	n.add(72);
 	n.add(12);
 	System.out.println(n.toString());
+	n.add(2, 700);
+	System.out.println(n.toString());
+
     }
 
 
