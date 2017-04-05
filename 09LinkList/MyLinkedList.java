@@ -1,3 +1,6 @@
+import java.lang.*;
+import java.util.*;
+
 public class MyLinkedList {
     private LNode start;
     private int size;
@@ -55,7 +58,12 @@ public class MyLinkedList {
     }
 
     private void insertAfter(LNode tba, LNode loc){
-	if (loc == end){
+	 if (size==0){
+	     start = tba;
+	     end = start;
+	     size++;
+	 }
+	else if (loc == end){
 	    loc.next = tba;
 	    tba.prev = loc;
 	    end = tba;
@@ -84,11 +92,12 @@ public class MyLinkedList {
 	    size++;}
     }
 		
-      public void add (int index, int value){
+    public void add (int index, int value){
 	try{
+	    
 	    LNode loc = getNode(index);
 	    LNode neu = new LNode(value);
-	    insertAfter(neu, loc);
+	    insertBefore(neu, loc);
      	}catch(NullPointerException e){
      	    System.out.println("ADD index out of bounds: " + index);
      	    return;
@@ -96,21 +105,10 @@ public class MyLinkedList {
     }
     
     public boolean add (int value){
-	try{
-	    if (size==0){
-		start = new LNode(value, start, null);
-		end = start;
-		size++;
-		return true;}
-	    else{
-		LNode neu = new LNode (value);
-		insertAfter(neu, end);
-        
-		return true;}
-	}catch (NullPointerException e){
-	    System.out.println("Null Pointer");
-	    return false;}
-}
+	LNode neu = new LNode (value);
+	insertAfter(neu, start);
+	return true;
+    }
     
     public int size (){
 	return size;
@@ -242,7 +240,7 @@ public class MyLinkedList {
 	n.add(72);
 	n.add(12);
 	System.out.println(n.toString());
-	n.add(2, 700);
+	n.add(1, 700);
 	System.out.println(n.toString());
 	System.out.println(n.indexOf(700));
 
