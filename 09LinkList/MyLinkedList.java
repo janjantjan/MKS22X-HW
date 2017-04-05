@@ -139,24 +139,17 @@ public class MyLinkedList {
 		int cur = current.value;
 		LNode bef = current.prev;
 		int aft = current.next.value;
-		//System.out.println("(" + bef + ")" + cur + "(" + aft + ")" + ", ");
 		fin += "(" + bef + ")" + cur + "(" + aft + ")" + ", ";
 		current = current.next;}
 	    else if (i == size-1){
-		//System.out.println("blah");
 		int cur = current.value;
-		//System.out.println(cur);
 		int bef = current.prev.value;
-		//System.out.println(bef);
 		LNode aft = current.next;
-		//System.out.println(aft);
-		//System.out.println("(" + bef + ")" + cur + "(" + aft + ")" + ", ");
 		fin += "(" + bef + ")" + cur + "(" + aft + ")";}
 	    else{
 		int cur = current.value;
 		int bef = current.prev.value;
 		int aft = current.next.value;
-		//System.out.println("(" + bef + ")" + cur + "(" + aft + ")" + ", ");
 		fin += "(" + bef + ")" + cur + "(" + aft + ")" + ", ";
 		current = current.next;}
 	  
@@ -169,7 +162,6 @@ public class MyLinkedList {
     public int indexOf(int val){
 	LNode current = start;
 	for (int i = size; i > 0; i--){
-	    //System.out.println(current.value);
 	    if (current.value == val){
 		return size - i;
 	    }
@@ -203,7 +195,6 @@ public class MyLinkedList {
 	    }
 	    int save = current.value;
 	    current.value = val;
-	    //System.out.println(current.value);
 	    return save;
 
 	}catch(NullPointerException e){
