@@ -1,7 +1,7 @@
 import java.lang.*;
 import java.util.*;
 
-public class MyLinkedList {
+public class MyLinkedList{
     private LNode start;
     private int size;
     private LNode end;     
@@ -203,6 +203,7 @@ public class MyLinkedList {
 	}
 	
     }
+
     
 	private class LNode{
 	    private LNode next;
