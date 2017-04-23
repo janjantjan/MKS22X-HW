@@ -8,39 +8,43 @@ public class Calc{
 	else {return false;}
     }
 
-    public static double apply(String a, String b, String op){
-	int x = Integer.parseInt(a);
-	int y = Integer.parseInt(b);
+    public static Double apply(Double a, Double b, String op){
+	double x = a.doubleValue();
+	double y = b.doubleValue();
 	if (op.equals("*")){ 
-	    int product = (x * y);
-	    return (double)(product);}
-	if (op.equals("/")){
-	    double quo = (double)x / y;
-	    return quo;}
-	if (op.equals("+")){
+	    double product = (x * y);
+	    return a.valueOf(product);}
+	else if (op.equals("/")){
+	    double quo = y / x;
+	    return a.valueOf(quo);}
+	else if (op.equals("+")){
 	    double sum = (x + y);
-	    return (double)(sum);}
-	if (op.equals("-")){
-	    int dif = x - y;
-	    return (double)(dif);}
-	if (op.equals("%")){
-	    int mod = x % y;
-	    return (double)(mod);}
+	    return a.valueOf(sum);}
+	else if (op.equals("-")){
+	    double dif = x - y;
+	    return a.valueOf(dif);}
+	else {
+	    double mod = y % x;
+	    return a.valueOf(mod);}
     }
 
 
 
     public static double eval (String  s){
-	Stack t = new Stack();
+	Stack<Double> t = new Stack <Double>();
 	String[]str = s.split(" ");
 	for (int i = 0; i < str.length; i++){
-	    String temp = str.get(0) + "";
+	    String temp = str[i] ;
 	    if (isOp(temp)){
-		int a = t.pop();
-		int b = t.pop();
-		eval(a,b,temp);
+		Double a = t.pop();
+		Double b = t.pop();
+		Double y = apply(a,b,temp);
+		System.out.println(y.toString());
+		t.push(y);
 	    }
-	    else{ t.push(temp);}
+	    else{
+		Double x = Double.parseDouble(temp);
+		t.push(x);}
 	}
 	double ans = t.pop();
 	return ans;
