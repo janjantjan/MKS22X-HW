@@ -51,7 +51,7 @@ public class Calc{
     }
 
     public static void main (String[]argg){
-	String s =  "2 3 + 5 * 3 / 2 + 4 -";
+	String s =  "3 3 + 5 * 3 / 2 + 4 -";
 	System.out.println("Output: " + eval(s));
     }
 }
