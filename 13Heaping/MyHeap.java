@@ -38,6 +38,7 @@ public class MyHeap {
     public void add (String str){
 	heap.add(str);
 	pushup();
+
     }
 
     public String remove(){
@@ -59,15 +60,32 @@ public class MyHeap {
 	heap.set(b, x);
     }
 
+    private boolean toogreat(String x, String next){
+	if (max){
+	    if (x.compareTo(next)<0){
+		return true;
+	    }
+	    else{return false;}}
+	else{if (x.compareTo(next)<0){
+		return false;
+	    }
+	    else{return true;}}
+    }
+    
     private void pushup(){
 	int end = heap.size()-1;
 	int moveto = end/2;
 	String ending = heap.get(end);
 	String moving = heap.get(moveto);
-	if (ending.compareTo(moving)<0){
-	    swap(end, moveto);}
-	else{return;}
-    
+	while(toogreat(ending, moving)){
+	    swap(end, moveto);
+	    if(end >= 1){
+		end = moveto;
+		moveto = end/2;
+		ending = heap.get(end);
+		moving = heap.get(moveto);}
+	    else{return;}
+	}	    
     }
 
     private void pushdown(){
@@ -75,24 +93,56 @@ public class MyHeap {
 	int moveto = end/2;
 	String ending = heap.get(end);
 	String moving = heap.get(moveto);
-	if (ending.compareTo(moving)>0){
-	    swap(end, moveto);}
-	else{return;}
+	if (max){
+	    if (ending.compareTo(moving)>0){
+		swap(end, moveto);}
+	    else{return;}}
+	else{if (ending.compareTo(moving)<0){
+		swap(end, moveto);}
+	    else{return;}}
     
     
     }
 
     private String makeString(){
 	String fin = "";
-	for (int i = 1 ; i< heap.size()-1 ; i++){
-		fin += heap.get(i) + ", " ;
+	int x = 1;
+	int y = 48;
+	int z = 0;
+	for (int i = 1 ; i< heap.size()-1 ;i = i*2 ){
+	    for (int j = 0; j < i ; j++){
+		if (x < heap.size()-1){
+		    z = heap.get(x).length();
+		    for (int k = 0; k < y-z; k++){
+			fin += " ";
+		    }
+		   
+		    fin += heap.get(x) ;
+		    x++;
+		    
+		}
+		else{
+		    
+		    for (int k = 0; k < y-z; k++){
+			fin += " ";
+		    }
+		    fin += heap.get(heap.size() -1);
+		    
+		    return fin;}}
+	    y = (y/3) * 2;
+	    fin+= "\n";
+	    fin+= "\n";
 	}
-    
-	return fin + heap.get(heap.size()-1) + "]";
+	
+	for (int k = 0; k < y; k++){
+	    fin += " ";
+	}
+	fin += heap.get(heap.size() -1);
+	return fin;
     }
 
     public static void main(String[]HELLOOOOOO){
-	MyHeap a = new MyHeap();
+	MyHeap a = new MyHeap(false);
 	a.add("apple");
 	a.add("zutter");
 	a.add("carrot");
@@ -101,6 +151,10 @@ public class MyHeap {
 	a.add("happy");
 	a.add("pun");
 	a.add("aaaaa");
+	a.add("mrk");
+	a.add("lala");
+	a.add("chip");
+	a.add("winning");
 	System.out.println(a.makeString());
     }
 }
