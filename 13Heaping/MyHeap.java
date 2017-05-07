@@ -112,7 +112,7 @@ public class MyHeap {
 	for (int i = 1 ; i< heap.size()-1 ;i = i*2 ){
 	    for (int j = 0; j < i ; j++){
 		if (x < heap.size()-1){
-		    z = heap.get(x).length();
+		    z = (heap.get(x).length())/2;
 		    for (int k = 0; k < y-z; k++){
 			fin += " ";
 		    }
@@ -153,22 +153,21 @@ public class MyHeap {
 	a.add("aaaaa");
 	a.add("mrk");
 	a.add("lala");
+	
 	a.add("chip");
 	a.add("winning");
 
-	MyHeap b = new MyHeap();
-	b.add("9");
-	b.add("3");
-	b.add("9");
-	b.add("4");
-	b.add("9");
-	b.add("1");
-	b.add("8");
-	b.add("2");
-	b.add("34");
 	
 	System.out.println(a.makeString());
-	System.out.println(b.makeString());
+	
+
+	a.remove();
+	a.remove();
+	a.remove();
+	a.remove();
+	System.out.println(a.makeString());
+	
+	    
 	
     }
 }
