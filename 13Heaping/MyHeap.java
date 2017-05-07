@@ -1,14 +1,3 @@
-/**Constructors
- -MyHeap() - construct empty max heap
- -MyHeap(boolean) - true: construct empty max heap, false: construct empty min heap.
- Methods
- -void add(String s)
- -String remove()
- -String peek()
-
-Private methods:
- -pushUp()
- -pushDown()*/
 import java.util.*;
 public class MyHeap {
 
@@ -141,33 +130,33 @@ public class MyHeap {
 	return fin;
     }
 
-    public static void main(String[]HELLOOOOOO){
-	MyHeap a = new MyHeap(false);
-	a.add("apple");
-	a.add("zutter");
-	a.add("carrot");
-	a.add("zebra");
-	a.add("chicken");
-	a.add("happy");
-	a.add("pun");
-	a.add("aaaaa");
-	a.add("mrk");
-	a.add("lala");
+    // public static void main(String[]HELLOOOOOO){
+    // 	MyHeap a = new MyHeap(false);
+    // 	a.add("apple");
+    // 	a.add("zutter");
+    // 	a.add("carrot");
+    // 	a.add("zebra");
+    // 	a.add("chicken");
+    // 	a.add("happy");
+    // 	a.add("pun");
+    // 	a.add("aaaaa");
+    // 	a.add("mrk");
+    // 	a.add("lala");
 	
-	a.add("chip");
-	a.add("winning");
+    // 	a.add("chip");
+    // 	a.add("winning");
 
 	
-	System.out.println(a.makeString());
+    // 	System.out.println(a.makeString());
 	
 
-	a.remove();
-	a.remove();
-	a.remove();
-	a.remove();
-	System.out.println(a.makeString());
+    // 	a.remove();
+    // 	a.remove();
+    // 	a.remove();
+    // 	a.remove();
+    // 	System.out.println(a.makeString());
 	
 	    
 	
-    }
+    // }
 }
