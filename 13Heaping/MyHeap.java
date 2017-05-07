@@ -155,6 +155,20 @@ public class MyHeap {
 	a.add("lala");
 	a.add("chip");
 	a.add("winning");
+
+	MyHeap b = new MyHeap();
+	b.add("9");
+	b.add("3");
+	b.add("9");
+	b.add("4");
+	b.add("9");
+	b.add("1");
+	b.add("8");
+	b.add("2");
+	b.add("34");
+	
 	System.out.println(a.makeString());
+	System.out.println(b.makeString());
+	
     }
 }
