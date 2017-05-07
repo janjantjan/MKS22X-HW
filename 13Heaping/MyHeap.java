@@ -4,13 +4,14 @@ public class MyHeap {
     private ArrayList<String> heap;
     private boolean max;
 
-    public void remove(){
+    public String remove(){
 	int end = heap.size()-1;
 	String ending = heap.get(end);
 	String top = heap.get(1);
-	remove();
+	remover();
 	heap.set(1, ending);
 	pushdown();
+	return top;
 
     }
     public MyHeap(){
@@ -38,12 +39,12 @@ public class MyHeap {
 
     }
 
-    // public String remove(){
-    // 	int end = heap.size()-1;
-    // 	String ending = heap.get(end);
-    // 	heap.remove(end);
-    // 	return ending;
-    // }
+     private void  remover(){
+    	int end = heap.size()-1;
+     	String ending = heap.get(end);
+     	heap.remove(end);
+     	
+     }
 
     public String peek(){
 	int end = heap.size()-1;
@@ -69,7 +70,7 @@ public class MyHeap {
 	    else{return true;}}
     }
     
-    private void pushup(){
+    private void  pushup(){
 	int end = heap.size()-1;
 	int moveto = end/2;
 	String ending = heap.get(end);
@@ -172,11 +173,11 @@ public class MyHeap {
      	System.out.println(a.makeString());
 	
 
-     	a.removeTop();
-
+     	System.out.println(a.remove());
+	
 	
      	System.out.println("\n" + "\n" + a.makeString());
 
-	System.out.println("" + 5/2);
+
      }
 }
