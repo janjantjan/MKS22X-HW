@@ -4,7 +4,7 @@ public class MyHeap {
     private ArrayList<String> heap;
     private boolean max;
 
-    public void removeTop(){
+    public void remove(){
 	int end = heap.size()-1;
 	String ending = heap.get(end);
 	String top = heap.get(1);
@@ -38,12 +38,12 @@ public class MyHeap {
 
     }
 
-    public String remove(){
-	int end = heap.size()-1;
-	String ending = heap.get(end);
-	heap.remove(end);
-	return ending;
-    }
+    // public String remove(){
+    // 	int end = heap.size()-1;
+    // 	String ending = heap.get(end);
+    // 	heap.remove(end);
+    // 	return ending;
+    // }
 
     public String peek(){
 	int end = heap.size()-1;
