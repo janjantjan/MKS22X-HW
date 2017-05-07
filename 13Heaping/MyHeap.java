@@ -4,7 +4,15 @@ public class MyHeap {
     private ArrayList<String> heap;
     private boolean max;
 
+    public void removeTop(){
+	int end = heap.size()-1;
+	String ending = heap.get(end);
+	String top = heap.get(1);
+	remove();
+	heap.set(1, ending);
+	pushdown();
 
+    }
     public MyHeap(){
         heap = new ArrayList<String>();
 	max = true; 
@@ -77,21 +85,35 @@ public class MyHeap {
 	}	    
     }
 
-    private void pushdown(){
-	int end = heap.size()-1;
-	int moveto = end/2;
-	String ending = heap.get(end);
-	String moving = heap.get(moveto);
-	if (max){
-	    if (ending.compareTo(moving)>0){
-		swap(end, moveto);}
-	    else{return;}}
-	else{if (ending.compareTo(moving)<0){
-		swap(end, moveto);}
-	    else{return;}}
-    
-    
+    private boolean toosmall(String x, String next){
+	return !toogreat(x,next);
     }
+
+    
+
+    private void pushdown(){
+	int top = 1;
+	int moveto = 2;
+	String toping = heap.get(1);
+	String moving = heap.get(moveto);
+	while(toosmall(toping, moving)){
+	    swap(top, moveto);
+	    if((top * 2) < (heap.size() -1)){
+		top = moveto;
+		moveto = top*2;
+		toping = heap.get(top);
+		moving = heap.get(moveto);}}
+	    moveto+=1;
+	    moving = heap.get(moveto);
+	    if (toosmall(toping, moving)){
+		 swap(top, moveto);;}
+		
+	    //else{return;}
+    }
+
+	
+    
+
 
     private String makeString(){
 	String fin = "";
@@ -130,33 +152,31 @@ public class MyHeap {
 	return fin;
     }
 
-    // public static void main(String[]HELLOOOOOO){
-    // 	MyHeap a = new MyHeap(false);
-    // 	a.add("apple");
-    // 	a.add("zutter");
-    // 	a.add("carrot");
-    // 	a.add("zebra");
-    // 	a.add("chicken");
-    // 	a.add("happy");
-    // 	a.add("pun");
-    // 	a.add("aaaaa");
-    // 	a.add("mrk");
-    // 	a.add("lala");
-	
-    // 	a.add("chip");
-    // 	a.add("winning");
+     public static void main(String[]HELLOOOOOO){
+     	MyHeap a = new MyHeap(false);
+     	a.add("apple");
+     	a.add("zutter");
+     	a.add("carrot");
+     	a.add("zebra");
+     	a.add("chicken");
+     	a.add("happy");
+     	a.add("pun");
+     	a.add("aaaaa");
+     	a.add("mrk");
+     	a.add("lala");
+
+     	a.add("chip");
+ 	a.add("winning");
 
 	
-    // 	System.out.println(a.makeString());
+     	System.out.println(a.makeString());
 	
 
-    // 	a.remove();
-    // 	a.remove();
-    // 	a.remove();
-    // 	a.remove();
-    // 	System.out.println(a.makeString());
+     	a.removeTop();
+
 	
-	    
-	
-    // }
+     	System.out.println("\n" + "\n" + a.makeString());
+
+	System.out.println("" + 5/2);
+     }
 }
