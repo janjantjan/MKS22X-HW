@@ -47,8 +47,8 @@ public class MyHeap {
      }
 
     public String peek(){
-	int end = heap.size()-1;
-	return heap.get(end);
+	
+	return heap.get(1);
     }
 
     private void swap(int a, int b){
