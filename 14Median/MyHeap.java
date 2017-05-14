@@ -79,55 +79,62 @@ public class MyHeap {
     
     private void  pushup(){
 	int end = heap.size()-1;
-	int moveto = end/2;
-	Integer ending = heap.get(end);
-	Integer moving = heap.get(moveto);
+	int ending = heap.get(end);
+	int moving = heap.get(end/2);
 	while(toogreat(ending, moving)){
-	    swap(end, moveto);
+	    swap(end, end/2);
 	    if(end >= 1){
-		end = moveto;
-		moveto = end/2;
+		end = end/2;
 		ending = heap.get(end);
-		moving = heap.get(moveto);}
+		moving = heap.get(end/2);}
 	    else{return;}
 	}	    
     }
+		
+	    
+
 
     private boolean toosmall(Integer x, Integer next){
 	return !toogreat(x,next);
     }
 
-  
-    private void pushdown(){
-	int top = 1;
-	int moveto = 2;
-	Integer toping = heap.get(top);
-	Integer moving = heap.get(moveto);
-	while(toosmall(toping, moving)){
-	    swap(top, moveto);
-	    System.out.println("\n" + makeString() + "[[[[" + top*2 + "[[" + heap.size());
-	    if((top * 2) < (heap.size()-1)){
-		top = top*2;
-		moveto = moveto*2;
-		toping = heap.get(top);
-		System.out.println("&&&&" + moveto);
-		if (moveto < heap.size()-1){
-		    moving = heap.get(moveto);}
-	    }}
-	    moveto+=1;
-	    moving = heap.get(moveto);
-	    if (toosmall(toping, moving)){
-		swap(top, moveto);;}
-		
-	    //else{return;}
-	
-
-	
     
+    private void  pushdown(){
+	int top = 1;
+	while (top*2 < heap.size()-1){
+	    
+	    int val = heap.get(top);
+	    if (heap.get(top*2)< heap.get(top*2+1)){
+		if (heap.get(top*2)<heap.get(top)){
+		    swap (top, top*2);
+		    top = top*2;}
+	    }
+	    else {
+		if (heap.get(top*2+1)<heap.get(top)){
+		    swap (top, top*2+1);
+		    top = top*2+1;}
+	    }
+	}	
+	if (heap.get(top*2)<heap.get(top)){
+	    
+	    swap (top, top*2);
+	    top = top*2;
+	    return;}
+    
+	    
+	else if (heap.get(top*2+1)<heap.get(top)){
+	    
+	    swap (top, top*2+1);
+	    top = top*2+1;
+	    return;}
+	
     }
+	
 
-    private String makeString(){
-	String fin = "";
+
+
+private String makeString(){
+    String fin = "";
 	int x = 1;
 	int y = 48;
 	
@@ -173,15 +180,22 @@ public class MyHeap {
 	 a.add(4);
 	 a.add(1);
 	 a.add(555);
+	 a.add(7);
+	 a.add(2);
+	 a.add(9);
+	 a.add(0);
+	 a.add(4);
+	 a.add(1);
+	 a.add(555);
 
 	
 	 System.out.println(a.makeString());
 	
 
-     	System.out.println(a.remove());
+	 System.out.println(a.remove());
 	
 	
-     	System.out.println("\n" + "\n" + a.makeString());
+	 System.out.println("\n" + "\n" + a.makeString());
 
 
      }
