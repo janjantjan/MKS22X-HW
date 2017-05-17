@@ -3,9 +3,19 @@ public class MazeSolver{
     private Maze board;
 
     public void solve(int x){
+	//breadth V. depth
     }
 
     public void solve(){
+	Location start = board.getStart();
+	Location getEnd = board.getEnd();
+	
+	int startR = start.getLineNumber();
+	int startC = start.getColumnNumber();
+
+
+
+
 
     }
 
