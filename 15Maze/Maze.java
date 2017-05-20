@@ -1,6 +1,7 @@
 import java.io.*;
 import java.io.FileNotFoundException;
 import java.util.*;
+
 public class Maze{
 
   private static final String CLEAR_SCREEN =  "\033[2J";
