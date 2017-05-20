@@ -1,18 +1,8 @@
 public interface Frontier{
 
-    public void add(Location x){
+    public void add(Location x);
 
-
-    }
-
-    public Location  next(){
-
-
-
-    }
-
-
-
+    public Location next();
 
 
 }
