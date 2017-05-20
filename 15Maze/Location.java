@@ -26,12 +26,20 @@ public class Location implements Comparable<Location>{
 	return col;
     }
 
+    public Location getPrev() {
+	return previous}
 
-    
-    public compareTo(Location other){
-
+       
+    public int compareTo(Location other){
+	if (aStar){
+	    int otro = other.distToGoal + other.distToStart;
+	    int mio  = distToGoal + distToStart;
+	    return otro - mio ;}
+	else{
+	    return other.distToGoal - distToGoal;
+	}
     }
-
-
+	
+	
 
 }
