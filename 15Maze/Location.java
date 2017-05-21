@@ -29,7 +29,8 @@ public class Location implements Comparable<Location>{
     public Location getPrev() {
 	return previous;}
 
-       
+    
+    
     public int compareTo(Location other){
 	if (aStar){
 	    int otro = other.distToGoal + other.distToStart;
