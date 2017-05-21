@@ -3,12 +3,22 @@ import java.lang.*;
 public class MazeSolver{
 
     private Maze board;
+    private boolean animate;
 
-    public void solve(int x){
-	//breadth V. depth
+    public MazeSolver(String filename) {
+	this(filename,false); } 
+    
+    public MazeSolver(String filename, boolean a) {
+	board = new Maze(filename);
+	animate = a;
     }
 
-    public void solve(){
+    
+    public void solve(int style){
+	//     - style is 0-4, where 0-DFS, 1-BFS,2-BestFirst, 3-A*
+	// - This method will instantiate the Frontier based on which style was chosen. 
+	// It will then add the starting location of the maze to the Frontier.
+	//Finally it will process each subsequent element of the frontier until the end is found. 
 	Location start = board.getStart();
 	Location end = board.getEnd();
 	int startR = start.getRow();
@@ -20,7 +30,12 @@ public class MazeSolver{
 	Location current = new Location (startR, startC, null,0, toGoal, false);
 	//will finish
 
+	//breadth V. depth
+    }
 
+    public void solve(){
+	
+	solve(1);
 
 
     }
@@ -62,7 +77,14 @@ public class MazeSolver{
 
 	
 	  
-
+    public String toString(){
+	if (animate){
+	    return board.toString(3);
+	}
+	else{
+	    return board.toString();}
+    }
+			    
 
 
 
