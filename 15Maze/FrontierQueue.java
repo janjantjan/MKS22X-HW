@@ -6,7 +6,7 @@ public class FrontierQueue implements Frontier {
 
     public FrontierQueue(){
 
-	
+	locations = new LinkedList<Location>();
     }
 
     

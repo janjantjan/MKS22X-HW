@@ -7,7 +7,7 @@ public class FrontierPriorityQueue implements Frontier{
 
     public FrontierPriorityQueue() {
 
-	locations = new PriorityQueue();
+	locations = new PriorityQueue<Location>();
     }
 	
     
