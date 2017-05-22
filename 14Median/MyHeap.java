@@ -5,18 +5,7 @@ public class MyHeap {
     private int size;
     private boolean max;
 
-    public Integer remove(){
-	int end = heap.size()-1;
-	Integer ending = heap.get(end);
-	Integer top = heap.get(1);
-	remover();
-	heap.set(1, ending);
-	pushdown();
-	size--;
-	return top;
 
-
-    }
     public MyHeap(){
         heap = new ArrayList<Integer>();
 	max = true; 
@@ -39,6 +28,20 @@ public class MyHeap {
 	}
     }
 
+    
+    public Integer remove(){
+	int end = heap.size()-1;
+	Integer ending = heap.get(end);
+	Integer top = heap.get(1);
+	heap.remove(end);
+	heap.set(1, ending);
+	size--;
+	pushdown();
+	
+	return top;
+    }
+   
+
     public void add (int str){
 	heap.add(str);
 	size++;
@@ -46,18 +49,16 @@ public class MyHeap {
 
     }
 
-     private void remover(){
-    	int end = heap.size()-1;
-     	int ending = heap.get(end);
-     	heap.remove(end);
-     	
-     }
-
+   
     public Integer peek(){
 	
 	return heap.get(1);
     }
 
+    public int size(){
+	return size;
+    }
+    
     private void swap(int a, int b){
 	Integer x = heap.get(a);
 	Integer y = heap.get(b);
@@ -67,11 +68,11 @@ public class MyHeap {
 
     private boolean toogreat(int x, int next){
 	if (max){
-	    if (x<next){
+	    if (x < next){
 		return true;
 	    }
 	    else{return false;}}
-	else{if (x<next){
+	else{if (x < next){
 		return false;
 	    }
 	    else{return true;}}
@@ -100,66 +101,29 @@ public class MyHeap {
 
     
     private void pushdown(){
-	if (max){
-	    int top = 1;
-	    while (top*2 < heap.size()-1){
-		System.out.println(makeString());
-		int val = heap.get(top);
-		if (heap.get(top*2)< heap.get(top*2+1)){
-		    if (heap.get(top*2)<heap.get(top)){
-			swap (top, top*2);
-			top = top*2;}
-		}
-		else {
-		    if (heap.get(top*2+1)<heap.get(top)){
-			swap (top, top*2+1);
-			top = top*2+1;}
-		}
-	    }	
-	    if (heap.get(top*2)<heap.get(top)){
-	    
-		swap (top, top*2);
+	int top = 1;
+	int topval = heap.get(top);
+	int moving1 = heap.get(2);
+	int moving2 = heap.get(3);
+	try{
+	    while((toosmall(top, moving1) || toosmall(top, moving1))&& (top *4 < size-1))  {
+	    if (toosmall(top, moving1)){
+		swap(top, moving1);
 		top = top*2;
-		return;}
-    
-	    
-	    else if (heap.get(top*2+1)<heap.get(top)){
-	    
-		swap (top, top*2+1);
+		moving1 = heap.get(top *2);
+		moving2 = heap.get(top *2 +1);
+	    }
+	    if(toosmall(top, moving2)){
+		swap(top,moving2);
 		top = top*2+1;
-		return;}
+		moving1 = heap.get(top *2);
+		moving2 = heap.get(top *2 +1);
+	    }
+	    }}	catch (IndexOutOfBoundsException e){
+	    return;
 	}
-	else{
-	    int top = 1;
-	    while (top*2 > heap.size()){
-	    
-		int val = heap.get(top);
-		if (heap.get(top*2)> heap.get(top*2+1)){
-		    if (heap.get(top*2)>heap.get(top)){
-			swap (top, top*2);
-			top = top*2;}
-		}
-		else {
-		    if (heap.get(top*2+1)>heap.get(top)){
-			swap (top, top*2+1);
-			top = top*2+1;}
-		}
-	    }	
-	    if (heap.get(top*2)>heap.get(top)){
-	    
-		swap (top, top*2);
-		top = top*2;
-		return;}
-    
-	    
-	    else if (heap.get(top*2+1)>heap.get(top)){
-		
-		swap (top, top*2+1);
-		top = top*2+1;
-		return;}
-	}
-	    
 	
+	return;	    
     }
 	
 
@@ -221,7 +185,7 @@ private String makeString(){
 	 System.out.println(a.makeString());
 	
 
-	 System.out.println(a.remove());
+	 a.remove();
 	
 	
 	 System.out.println("\n" + "\n" + a.makeString());
