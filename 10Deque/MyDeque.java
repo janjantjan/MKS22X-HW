@@ -5,42 +5,110 @@ public class Deque{
     private int first;
     private int last;
     private int size;
+    private int maxsize;
 
     public Deque(){
 	n = new String[2];
-	size = 2;
+	maxsize = 2;
+	size = 0;
 	first = 0;
 	last = 0;
 
     }
 
+    public Deque(int x){
+	n  new String[x];
+	maxsize = x;
+	size = 0
+	first = 0;
+	last = 0;
+    }
+
     private void double(){
-	n = new String[size*2];
+	m = new String[size*2];
 	size = size*2;
+
+	for (int i = 0; i < n.length; i++){
+	    m[i] = n[i];
+	}
+
+	n = m;
+	maxsize = maxsize * 2;
+	
     }
 
     public void addFirst(String str){
-	try{
-	    
-	
-	    
+	if (maxsize = size+1){
+	    double();}	
+	n[first] = str;
+	if (first == 0){
+	    first = n.length-1}
+	else{ first--;}
+
+	size++;
+	  
 	
     }
 
     public void addLast(String str){
+	if (maxsize = size+1){
+	    double();}
+
+	n[last] = str;
+	if (last == n.length-1}{
+	    last == 0;}
+	else{length++;}
+
+	size++;
 	
     }
 
     public String removeFirst(){
+	if (size==0){
+	    throw new NoSuchElementException();
+	}
+	String save = n[first];
+	n[first] = "";
+	if (first == n.length){
+	    first = 0;}
+	else{first++;}
+
+	size--;
+
+	return save;
     }
 
     public String removeLast(){
+	if (size==0){
+	    throw new NoSuchElementException();
+	}
+	String save = n[last];
+	n[last] = "";
+	if (last == 0){
+	    last = n.length-1;
+	}
+	else{last--;}
+
+	size--;
+
+	return save;	
     }
 
     public String getFirst(){
+	if (size==0){
+	    throw new NoSuchElementException();
+	}
+	else{return n[first];}
+	
+		
     }
 
     public String getLast(){
+	if (size==0){
+	    throw new NoSuchElementException();
+	}
+	else{return n[last];}
+	
     }
 
 
