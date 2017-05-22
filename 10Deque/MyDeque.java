@@ -1,13 +1,13 @@
 import java.util.*;
 
-public class Deque{
+public class MyDeque{
     private String[]  n;
     private int first;
     private int last;
     private int size;
     private int maxsize;
 
-    public Deque(){
+    public MyDeque(){
 	n = new String[2];
 	maxsize = 2;
 	size = 0;
@@ -16,18 +16,17 @@ public class Deque{
 
     }
 
-    public Deque(int x){
-	n  new String[x];
+    public MyDeque(int x){
+	n = new String[x];
 	maxsize = x;
-	size = 0
+	size = 0;
 	first = 0;
 	last = 0;
     }
 
-    private void double(){
-	m = new String[size*2];
-	size = size*2;
-
+    private void ouble(){
+	String[] m = new String[maxsize*2];
+	
 	for (int i = 0; i < n.length; i++){
 	    m[i] = n[i];
 	}
@@ -38,29 +37,37 @@ public class Deque{
     }
 
     public void addFirst(String str){
-	if (maxsize = size+1){
-	    double();}	
-	n[first] = str;
+	if (maxsize == size+1){
+	    ouble();}
+	if (size==0){
+	    n[0] = str;
+	    size++;
+	    return;
+	}
 	if (first == 0){
-	    first = n.length-1}
+	    first = n.length-1;}
 	else{ first--;}
-
+	n[first] = str;
+	
 	size++;
 	  
 	
     }
 
     public void addLast(String str){
-	if (maxsize = size+1){
-	    double();}
-
+	if (maxsize == size+1){
+	    ouble();}
+	if (size==0){
+	    n[0] = str;
+	    size++;
+	    return;}
+	if (last == n.length-1){
+	    last = 0;}
+	else{last++;}
 	n[last] = str;
-	if (last == n.length-1}{
-	    last == 0;}
-	else{length++;}
 
-	size++;
 	
+	size++;
     }
 
     public String removeFirst(){
@@ -97,6 +104,7 @@ public class Deque{
     public String getFirst(){
 	if (size==0){
 	    throw new NoSuchElementException();
+	    //return "Deque is empty";
 	}
 	else{return n[first];}
 	
@@ -106,10 +114,48 @@ public class Deque{
     public String getLast(){
 	if (size==0){
 	    throw new NoSuchElementException();
+	    //return "Deque is empty";
 	}
 	else{return n[last];}
 	
     }
+
+    private String makeString(){
+	String fin = "";
+
+	for (int i=0; i < n.length; i++){
+	    fin += n[i] + "   ";
+	}
+
+	fin += "first: " + first + " last: " + last;
+	return fin;
+
+
+    }
+
+    public static void main (String[] args){
+	MyDeque x = new MyDeque();
+	x.addFirst("carrot");
+	System.out.println(x.makeString());
+	x.addFirst("banana");
+	System.out.println(x.makeString());
+	x.addFirst("apple");
+	System.out.println(x.makeString());
+	x.addLast("dog");
+
+	System.out.println(x.makeString());
+	
+	System.out.println(x.getLast());
+	System.out.println(x.getFirst());
+
+	System.out.println(x.removeFirst());
+	System.out.println(x.removeLast());
+
+	System.out.println(x.getLast());
+	System.out.println(x.getFirst());
+	
+    }
+}
 
 
 
@@ -147,4 +193,3 @@ public class Deque{
 
 
 
-}
