@@ -1,17 +1,47 @@
 import java.util.*;
 
 public class Deque{
-    private LinkedList n;
+    private String[]  n;
+    private int first;
+    private int last;
+    private int size;
 
     public Deque(){
-	n = new LinkedList();
+	n = new String[2];
+	size = 2;
+	first = 0;
+	last = 0;
 
     }
 
-    public Deque (int size){
-n =  new Linked
+    private void double(){
+	n = new String[size*2];
+	size = size*2;
+    }
 
-}
+    public void addFirst(String str){
+	try{
+	    
+	
+	    
+	
+    }
+
+    public void addLast(String str){
+	
+    }
+
+    public String removeFirst(){
+    }
+
+    public String removeLast(){
+    }
+
+    public String getFirst(){
+    }
+
+    public String getLast(){
+    }
 
 
 
