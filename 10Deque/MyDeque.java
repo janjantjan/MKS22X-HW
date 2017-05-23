@@ -26,14 +26,28 @@ public class MyDeque{
 
     private void ouble(){
 	String[] m = new String[maxsize*2];
-	
-	for (int i = 0; i < n.length; i++){
-	    m[i] = n[i];
+
+	//reset start and end
+	int i = 0;
+	if (first<=last){
+	    for (int j = first; j <= last; j++){
+		m[i] = n[j];
+		i++;}
 	}
+	else{
+	    for (int k = first; k < n.length; k++){
+		m[i] = n[k];
+		i++;}
+	    for (int l = last; l < first; l++){
+		m[i] = n[l];
+		i++;}
+	}
+	
 
 	n = m;
 	maxsize = maxsize * 2;
-	
+	first = 0;
+	last = size-1;
     }
 
     public void addFirst(String str){
@@ -142,6 +156,9 @@ public class MyDeque{
 	x.addFirst("apple");
 	System.out.println(x.makeString());
 	x.addLast("dog");
+	x.addLast("elephant");
+	x.addLast("fish");
+	x.addFirst("aaa");
 
 	System.out.println(x.makeString());
 	
