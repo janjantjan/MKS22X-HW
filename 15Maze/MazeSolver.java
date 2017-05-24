@@ -23,7 +23,7 @@ public class MazeSolver{
 	int endR = end.getRow();
 	int endC = end.getCol();
 	int toGoal = (int) Math.abs(startR - endR) + Math.abs(startC - endC);
-
+	System.out.println("A");
 	//Frontier front;
 	
 	if (style == 0){
@@ -33,6 +33,7 @@ public class MazeSolver{
 	if (style == 1){
 	    front = new FrontierQueue();
 	    front.add(start);
+	    System.out.println("C");
 	}
 	if (style == 2){
 	    front = new FrontierPriorityQueue();
@@ -41,13 +42,13 @@ public class MazeSolver{
 	// if (style == 3){
 	// } ???
 	
-	
+	System.out.println("B");
 	 
 	while( front.size() > 0){
 	    Location current = front.next();
 	    int currentR = current.getRow();
 	    int currentC = current.getCol();
-
+	    System.out.println("D");
 	    if ((currentR == startR) && (currentC == currentR)){
 		//set(currentR, currentC, '@');
 		while(front.size() > 0){
@@ -60,11 +61,13 @@ public class MazeSolver{
 	    }
 		
 	    int[] neighbors = neigh(current);
+	    System.out.println(emptyary(neighbors));
 	    if (neighbors[0]==1){//row, col-1)
 		board.set(currentR, currentC-1, '.');
 		if (animate) {System.out.println(toString());}
 		int toGo1 = (int) Math.abs(currentR - endR) + Math.abs(currentC - endC -1);
 		Location left = new Location (currentR, currentC-1, current, 0,toGo1, false);
+		
 		front.add(left);
 	    }
 	    if (neighbors[1]==1){//row, col+1
@@ -101,34 +104,36 @@ public class MazeSolver{
 	int row = x.getRow();
 	int col = x.getCol();
 	int[] fin = new int[4]; // ( L, R, U, D)
-	try{if (board.get(row, col-1) == ' '){
-	    fin[0] = 1;
+	if (col > 0){
+	    if (board.get(row, col-1) == ' '){
+		fin[0] = 1;
 	    }
+	    else{fin[0] = 0;}}
+	if (col < board.getmaxC()){
+	    if (board.get(row, col+1) == ' ' ){
+		fin[1] = 1;
+	    }
+	    else{fin[1] = 0;}}
+	if (row > 0 ){
+	    if (board.get(row-1, col) == ' ' ){
+		fin[2] = 1;
+	    }
+	    else{fin[2] = 0;}}
+	if (row < board.getmaxR()){
+	    if (board.get(row+1, col) == ' ' ){
+		fin[3] = 1;
+	    }
+	    else{fin[3] = 0;}}
 	
-	
-	else{fin[0] = 0;}
-	if (board.get(row, col+1) == ' ' ){
-	    fin[1] = 1;
-	}
-	else{fin[1] = 0;}
-	if (board.get(row-1, col) == ' ' ){
-	    fin[2] = 1;
-	}
-	else{fin[2] = 0;}
-	if (board.get(row+1, col) == ' ' ){
-	    fin[3] = 1;
-	}
-	else{fin[3] = 0;}}
-	catch (ArrayIndexOutOfBoundsException e){
-	    fin[0] = 0;
-	    fin[1] = 0;
-	    fin[2] = 0;
-	    fin[3] = 0;}
 	
 	return fin;
     }
 
-	
+    private boolean emptyary(int[] ary){
+	for (int i = 0 ; i < ary.length; i++){
+	    if (ary[i] == 1){ return false;}}
+	    return true;
+    }
 	  
     public String toString(){
         return board.toString();}
@@ -137,8 +142,9 @@ public class MazeSolver{
     public static void main (String[]args){
 
 	MazeSolver a = new  MazeSolver("maze.txt", true);
-
+	System.out.println(a.toString());
 	a.solve(1);
+	System.out.println(a.toString());
     }
 
 
