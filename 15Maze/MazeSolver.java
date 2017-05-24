@@ -4,61 +4,108 @@ public class MazeSolver{
 
     private Maze board;
     private boolean animate;
+    private Frontier front;
 
     public MazeSolver(String filename) {
-	this(filename,false); } 
+	this(filename,false);
+	} 
     
     public MazeSolver(String filename, boolean a) {
 	board = new Maze(filename);
 	animate = a;
     }
 
-    
     public void solve(int style){
-	//     - style is 0-4, where 0-DFS, 1-BFS,2-BestFirst, 3-A*
-	// - This method will instantiate the Frontier based on which style was chosen. 
-	// It will then add the starting location of the maze to the Frontier.
-	//Finally it will process each subsequent element of the frontier until the end is found. 
 	Location start = board.getStart();
 	Location end = board.getEnd();
 	int startR = start.getRow();
 	int startC = start.getCol();
 	int endR = end.getRow();
 	int endC = end.getCol();
-	int toGoal = (int) Math.sqrt(((startR - endR) * (startR - endR)) + ((startC - endC) * (startC - endC)));
+	int toGoal = (int) Math.abs(startR - endR) + Math.abs(startC - endC);
 
-	Location current = new Location (startR, startC, null,0, toGoal, false);
-	//will finish
+	//Frontier front;
+	
+	if (style == 0){
+	    front = new FrontierStack();
+	    front.add(start);
+	}
+	if (style == 1){
+	    front = new FrontierQueue();
+	    front.add(start);
+	}
+	if (style == 2){
+	    front = new FrontierPriorityQueue();
+	    front.add(start);
+	}
+	// if (style == 3){
+	// } ???
+	
+	
+	 
+	while( front.size() > 0){
+	    Location current = front.next();
+	    int currentR = current.getRow();
+	    int currentC = current.getCol();
 
-	//breadth V. depth
+	    if ((currentR == startR) && (currentC == currentR)){
+		//set(currentR, currentC, '@');
+		while(front.size() > 0){
+		    Location next = front.next();
+		    int nextR = next.getRow();
+		    int nextC = next.getCol();
+		    board.set(nextR, nextC, '@');
+		    if (animate) {System.out.println(toString());}
+		}
+	    }
+		
+	    int[] neighbors = neigh(current);
+	    if (neighbors[0]==1){//row, col-1)
+		board.set(currentR, currentC-1, '.');
+		if (animate) {System.out.println(toString());}
+		int toGo1 = (int) Math.abs(currentR - endR) + Math.abs(currentC - endC -1);
+		Location left = new Location (currentR, currentC-1, current, 0,toGo1, false);
+		front.add(left);
+	    }
+	    if (neighbors[1]==1){//row, col+1
+		board.set(currentR, currentC+1, '.');
+		if (animate) {System.out.println(toString());}
+		int toGo2 = (int) Math.abs(currentR - endR) + Math.abs(currentC - endC +1);
+		Location right = new Location (currentR, currentC+1, current,0, toGo2, false);
+		front.add(right);
+	    }
+	    if (neighbors[2]==1){//row-1, col
+		board.set(currentR-1, currentC, '.');
+		if (animate) {System.out.println(toString());}
+		int toGo3 = (int) Math.abs(currentR - endR -1) + Math.abs(currentC - endC);
+		Location up = new Location (currentR-1, currentC, current,0, toGo3, false);
+		front.add(up);
+	    }
+	    if (neighbors[3]==1){//row+1, col
+		board.set(currentR+1, currentC, '.');
+		if (animate) {System.out.println(toString());}
+		int toGo4 = (int) Math.abs(currentR - endR +1) + Math.abs(currentC - endC);
+		Location down = new Location (currentR+1, currentC, current,0, toGo4, false);
+		front.add(down);
+	    }
+	}
     }
+	
+
 
     public void solve(){
-	
 	solve(1);
-
-
-    }
-
-    private boolean hasN(Location x) {
-	int[] n = neigh(x);
-
-	for (int i = 0; i < n.length; i++){
-	    if (n[i] == 1) { return true;}
-	}
-
-	return false;
-	
-    }
-    
+    }    
 
     private int[] neigh(Location x){
 	int row = x.getRow();
 	int col = x.getCol();
 	int[] fin = new int[4]; // ( L, R, U, D)
-	if (board.get(row, col-1) == ' '){
+	try{if (board.get(row, col-1) == ' '){
 	    fin[0] = 1;
-	}
+	    }
+	
+	
 	else{fin[0] = 0;}
 	if (board.get(row, col+1) == ' ' ){
 	    fin[1] = 1;
@@ -71,21 +118,28 @@ public class MazeSolver{
 	if (board.get(row+1, col) == ' ' ){
 	    fin[3] = 1;
 	}
-	else{fin[3] = 0;}
+	else{fin[3] = 0;}}
+	catch (ArrayIndexOutOfBoundsException e){
+	    fin[0] = 0;
+	    fin[1] = 0;
+	    fin[2] = 0;
+	    fin[3] = 0;}
+	
 	return fin;
     }
 
 	
 	  
     public String toString(){
-	if (animate){
-	    return board.toString(3);
-	}
-	else{
-	    return board.toString();}
-    }
+        return board.toString();}
+    
 			    
+    public static void main (String[]args){
 
+	MazeSolver a = new  MazeSolver("maze.txt", true);
+
+	a.solve(1);
+    }
 
 
 
