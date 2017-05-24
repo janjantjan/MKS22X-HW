@@ -151,7 +151,7 @@ public class MazeSolver{
 
 	MazeSolver a = new  MazeSolver("maze.txt", true);
 	System.out.println(a.toString());
-	a.solve(1);
+	a.solve(0);
 	System.out.println(a.toString());
     }
 
