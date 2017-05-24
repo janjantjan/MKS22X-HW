@@ -4,5 +4,6 @@ public interface Frontier{
 
     public Location next();
 
+    public int size();
 
 }

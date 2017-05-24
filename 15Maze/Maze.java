@@ -12,6 +12,10 @@ public class Maze{
   private char[][]maze;
   private int maxRows,maxCols;
 
+    public int getmaxR(){
+	return maxRows;}
+    public int getmaxC(){
+	return maxCols;}
 
   public Location getStart(){
     return start;

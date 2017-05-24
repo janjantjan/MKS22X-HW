@@ -10,13 +10,16 @@ public class Location implements Comparable<Location>{
 
     public Location(int r, int c, Location previous , int distToStart, int distToGoal, boolean aStar){
 
-	r = row;
-	c = col;
+	row = r;
+	col = c;
 	this.previous = previous;
 	this.distToGoal = distToGoal;
 	this.distToStart = distToStart;
 	this.aStar = aStar;
     }
+
+    public Location prev(){
+	return previous;}
 
     public int getRow() {
 	return row;

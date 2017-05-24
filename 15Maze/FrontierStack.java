@@ -14,7 +14,11 @@ public class FrontierStack implements Frontier {
 	locations.push(x);
 	
     }
+    public int size(){
 
+	return locations.size();
+    }
+    
     public Location next(){
 
 	return locations.pop();

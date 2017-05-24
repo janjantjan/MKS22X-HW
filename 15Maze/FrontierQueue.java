@@ -15,6 +15,10 @@ public class FrontierQueue implements Frontier {
 
     }
 
+    public int size(){
+	return locations.size();
+    }
+    
     public Location next(){
 	return locations.remove();
     }
