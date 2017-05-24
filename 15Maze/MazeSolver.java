@@ -53,17 +53,18 @@ public class MazeSolver{
 	    //System.out.println("D");
 	    	
 	    if ((currentR == endR) && (currentC == endC)){
-		board.set(currentR, currentC, '@');
+		
 		//System.out.println(front.size());
-		while(front.size() > 0){
-		    System.out.println("B");
-		    Location next = front.next();
-		    int nextR = next.getRow();
-		    int nextC = next.getCol();
-		    board.set(nextR, nextC, '@');
+		while(current.prev() != null){
+		    board.set(currentR, currentC, '@');
+		    current = current.prev();
+		    currentR = current.getRow();
+		    currentC = current.getCol();
 		    if (animate) {
 			System.out.println(toString());}
 		}
+		
+	        board.set(startR, startC, '@');
 		return;
 	    }
 	    //System.out.println("E");
@@ -156,7 +157,7 @@ public class MazeSolver{
 
 	MazeSolver a = new  MazeSolver("maze.txt", true);
 	System.out.println(a.toString());
-	a.solve(1);
+	a.solve(0);
 	System.out.println(a.toString());
     }
 
