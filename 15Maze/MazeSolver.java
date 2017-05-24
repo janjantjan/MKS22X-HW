@@ -23,6 +23,7 @@ public class MazeSolver{
 	//System.out.println("startR: " + startR + " startC: " + startC);
 	int endR = end.getRow();
 	int endC = end.getCol();
+	System.out.println("endR: " + endR + " endC: " + endC);
 	int toGoal = (int) Math.abs(startR - endR) + Math.abs(startC - endC);
 	//System.out.println("A");
 	//Frontier front;
@@ -50,9 +51,12 @@ public class MazeSolver{
 	    int currentR = current.getRow();
 	    int currentC = current.getCol();
 	    //System.out.println("D");
+	    	
 	    if ((currentR == endR) && (currentC == endC)){
-		//set(currentR, currentC, '@');
+		board.set(currentR, currentC, '@');
+		//System.out.println(front.size());
 		while(front.size() > 0){
+		    System.out.println("B");
 		    Location next = front.next();
 		    int nextR = next.getRow();
 		    int nextC = next.getCol();
@@ -60,6 +64,7 @@ public class MazeSolver{
 		    if (animate) {
 			System.out.println(toString());}
 		}
+		return;
 	    }
 	    //System.out.println("E");
 	    int[] neighbors = neigh(current);
@@ -151,7 +156,7 @@ public class MazeSolver{
 
 	MazeSolver a = new  MazeSolver("maze.txt", true);
 	System.out.println(a.toString());
-	a.solve(0);
+	a.solve(1);
 	System.out.println(a.toString());
     }
 
